@@ -118,7 +118,7 @@ void Parser::parseFact() {
         parseStringList(newParameters);
         parseToken(tokens[index], RIGHT_PAREN);
         parseToken(tokens[index], PERIOD);
-        int factLength = index - tempIndex + 1;
+        unsigned int factLength = index - tempIndex + 1;
         for (unsigned int i=0; i<factLength; i++) {
             tempFact += tokens[i+tempIndex]->getValue();
         }
