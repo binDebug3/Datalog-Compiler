@@ -21,7 +21,7 @@ std::string Parser::printError(TokenType expectation, std::string stringID = "te
     return "  " + tokens[index]->tokenToString();
 }
 std::string Parser::toString() {
-    return exito + datalog.toString();
+    return exito + datalog.toString() + "\n";
 }
 
 
@@ -118,7 +118,7 @@ void Parser::parseFact() {
         parseStringList(newParameters);
         parseToken(tokens[index], RIGHT_PAREN);
         parseToken(tokens[index], PERIOD);
-        int factLength = index - tempIndex + 1;
+        unsigned int factLength = index - tempIndex + 1;
         for (unsigned int i=0; i<factLength; i++) {
             tempFact += tokens[i+tempIndex]->getValue();
         }
@@ -181,7 +181,6 @@ std::string Parser::parsePredicate(std::vector<Parameter*> &newParameter) {
         std::string predicateID = tokens[index-1]->getValue();
         parseToken(tokens[index], LEFT_PAREN);
         parseParameter();
-        newParameter.push_back(new Parameter(tokens[index-1]->getValue()));
         parseParameterList(newParameter);
         parseToken(tokens[index], RIGHT_PAREN);
         return predicateID;
