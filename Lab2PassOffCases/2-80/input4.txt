@@ -1,0 +1,14 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SPRING 2021 SEMESTER
+# passoffInput26     SUCCESS
+Schemes:
+
+noDeath( n , d )
+
+Facts:
+
+Rules:
+
+Queries:
+
+noDeath( 'no' , 'Death' )?

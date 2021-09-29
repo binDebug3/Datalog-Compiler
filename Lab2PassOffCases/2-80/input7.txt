@@ -1,0 +1,21 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SPRING 2021 SEMESTER
+# passoffInput29     FAILURE RightParen,23
+# Testing for no IDs in facts.
+Schemes:
+
+exprTest( e )
+deathTest( d , t )
+
+Facts:
+
+cool('eat','lots of',SPAM).
+
+Rules:
+
+deathTest(SPAM) :- exprTest
+                         ( E ).
+
+Queries:
+
+deathTest( a , b )?

@@ -1,0 +1,19 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SPRING 2021 SEMESTER
+# passoffInput23     FAILURE Queries,11
+# Tests if student followed the datalogprogram rule
+Schemes:
+   student( N , I , A , M )
+   WhoMajor( N , M )
+
+Facts:
+   student( 'North' , '51' , '10 Main' , 'CS' ).
+   student( 'Reagan' , '52' , '11 Maple' , 'CS' ).
+   student( 'Clinton' , '53' , '12 Ashton' , 'MATH' ).
+
+Queries:
+   WhoMajor( 'North' , M )?
+   WhoMajor( N , 'MATH' )?
+
+Rules:
+   WhoMajor( N , M ) :- student( N , I , A , M ).

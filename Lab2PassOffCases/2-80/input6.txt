@@ -1,0 +1,7 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SPRING 2021 SEMESTER
+# passoffInput28     FAILURE Facts,3
+Schemes:
+Facts:
+Rules:
+Queries:

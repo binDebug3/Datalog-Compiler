@@ -1,0 +1,8 @@
+Success!
+Schemes(1):
+  noDeath(n,d)
+Facts(0):
+Rules(0):
+Queries(1):
+  noDeath('no','Death')?
+Domain(0):

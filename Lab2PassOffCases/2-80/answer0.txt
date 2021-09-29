@@ -1,0 +1,33 @@
+Success!
+Schemes(2):
+  student(N,I,A,M)
+  WhoMajor(N,M)
+Facts(4):
+  student('Roosevelt','51','10 Main','Econ').
+  student('Reagan','52','11 Maple','Econ').
+  student('G.W.Bush','53','12 Ashton','AgriSci').
+  student('Clinton','54','','Lying').
+Rules(1):
+  WhoMajor(N,M) :- student(N,I,A,M).
+Queries(5):
+  WhoMajor('Roosevelt',N)?
+  WhoMajor(M,'Econ')?
+  WhoMajor('George Washington','PoliSci')?
+  WhoMajor('Abraham Lincoln','Law')?
+  student('John Adams',I,A,M)?
+Domain(15):
+  ''
+  '10 Main'
+  '11 Maple'
+  '12 Ashton'
+  '51'
+  '52'
+  '53'
+  '54'
+  'AgriSci'
+  'Clinton'
+  'Econ'
+  'G.W.Bush'
+  'Lying'
+  'Reagan'
+  'Roosevelt'

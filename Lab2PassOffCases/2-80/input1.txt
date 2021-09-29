@@ -1,0 +1,37 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SPRING 2021 SEMESTER
+# passoffInput22     FAILURE Period,35
+# Tests for students checking punctuation
+  #Schemes:
+Schemes:
+     #student(N,I,A,M)
+   student(N,I,A,M)
+     #WhoMajor(N,M)
+   WhoMajor(N,M)
+
+  #Facts:
+Facts:
+     #student('North', '51', '10 Main', 'CS').
+   student('North', '51', '10 Main', 'CS').
+     #student('Reagan','52', '11 Maple', 'CS').
+   student('Reagan','52', '11 Maple', 'CS').
+     #student('Clinton','53','12 Ashton', 'MATH').
+   student('Clinton','53','12 Ashton', 'MATH').
+
+  #Rules:
+Rules:
+     #WhoMajor(N,M) :- student(N,I,A,M).
+   WhoMajor(N,M) :- student(N,I,A,M).
+     #WhoMajor(N,M) :- student('Lucy',I,A,'Psychology').
+   WhoMajor(N,M) :- student('Lucy',I,A,'Psychology').
+
+  #Queries:
+Queries:
+    #WhoMajor('North',M)?
+  WhoMajor('North',M)?
+    #WhoMajor(N,'MATH')?
+  WhoMajor(N,'MATH')?
+    #WhoMajor('Charlie Brown','Human Relations')?
+  WhoMajor('Charlie Brown','Human Relations')?
+    #WhoMajor('Snoopy','Drama').
+  WhoMajor('Snoopy','Drama').

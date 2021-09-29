@@ -1,0 +1,26 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SPRING 2021 SEMESTER
+# passoffInput24     FAILURE STRING, 5
+# Tests for no strings in Schemes. Should fail second scheme
+Schemes:
+   student( N , I , A , M )
+   WhoMajor( N ,'M')
+
+Facts:
+   student( 'North' , '51' , '10 Main' , 'CS' ).
+   student( 'Reagan', '52' , '11 Maple' , 'BLAH' ).
+   student( 'Clinton' , '53' , '12 Ashton' , 'BLAH' ).
+
+Rules:
+   WhoMajor( N , M ) :- student( N , I , A , M ).
+   WhoMajor( R , M ) :- student( R , I , A , 'I love my girl!' ).
+   WhoMajor( Q , M ) :-
+                        student( Q , I , A , 'we' , getting , married )
+                       .                            
+
+Queries:
+   WhoMajor( 'North' , M )?
+   WhoMajor( N , 'MATH' )?
+   student( 'KobeBryant' , '8' , 'LosAngeles' , 'Basketball' )?
+
+

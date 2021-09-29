@@ -1,0 +1,35 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SPRING 2021 SEMESTER
+# passoffInput20     SUCCESS
+# This tests their 'success' with a few comments tokens now and then
+  #Schemes: 
+Schemes: 
+  #student(N, I, A, M)
+student(N, I, A, M)
+  #WhoMajor(N,M)
+WhoMajor(N,M)
+
+Facts: 
+  #Facts: 
+student('Roosevelt', '51', '10 Main', 'Econ').
+  #student('Roosevelt', '51', '10 Main', 'Econ').
+student('Reagan','52', '11 Maple', 'Econ').
+  #student('Reagan','52', '11 Maple', 'Econ').
+student('G.W.Bush','53','12 Ashton', 'AgriSci').
+  #student('G.W.Bush','53','12 Ashton', 'AgriSci').
+student('Clinton','54','', 'Lying').
+  #student('Clinton','54','', 'Lying').
+
+  #Rules:
+Rules:
+  #WhoMajor(N,M):-student(N,I,A,M).
+WhoMajor(N,M):-student(N,I,A,M).
+
+Queries:
+  #Queries:
+WhoMajor('Roosevelt',N)?WhoMajor(M,'Econ')?
+  #WhoMajor('Roosevelt',N)?WhoMajor(M,'Econ')?
+WhoMajor('George Washington','PoliSci')?
+  #WhoMajor('George Washington','PoliSci')?
+WhoMajor('Abraham Lincoln','Law')?student('John Adams', I, A, M)?
+  #WhoMajor('Abraham Lincoln','Law')?student('John Adams', I, A, M)? 
