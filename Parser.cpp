@@ -21,7 +21,7 @@ std::string Parser::printError(TokenType expectation, std::string stringID = "te
     return "  " + tokens[index]->tokenToString();
 }
 std::string Parser::toString() {
-    return exito + datalog.toString();
+    return exito + datalog.toString() + "\n";
 }
 
 
