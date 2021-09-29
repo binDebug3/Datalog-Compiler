@@ -21,7 +21,7 @@ std::string Parser::printError(TokenType expectation, std::string stringID = "te
     return "  " + tokens[index]->tokenToString();
 }
 std::string Parser::toString() {
-    return exito + datalog.toString() + "\n";
+    return exito + datalog.toString();
 }
 
 
@@ -195,7 +195,7 @@ void Parser::parsePredicateList(std::vector<Predicate*> &newPredicate) {
         std::vector<Parameter*> newParameters;
         parseToken(tokens[index], COMMA);
         std::string predicateID = parsePredicate(newParameters);
-        newParameters.push_back(new Parameter(tokens[index-1]->getValue()));
+        //newParameters.push_back(new Parameter(tokens[index-1]->getValue()));
         newPredicate.push_back(new Predicate(predicateID, newParameters));
         parsePredicateList(newPredicate);
     }
@@ -218,7 +218,7 @@ void Parser::parseStringList(std::vector<Parameter*> &newParameter) {
     if (match(tokens[index], COMMA)) {
         parseToken(tokens[index], COMMA);
         parseToken(tokens[index], STRING);
-        //newParameter.push_back(new Parameter(tokens[index-1]->getValue()));
+        newParameter.push_back(new Parameter(tokens[index-1]->getValue()));
         datalog.addDomain(tokens[index-1]->getValue());
         parseStringList(newParameter);
     }
