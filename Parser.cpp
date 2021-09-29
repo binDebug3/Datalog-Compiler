@@ -218,7 +218,7 @@ void Parser::parseStringList(std::vector<Parameter*> &newParameter) {
     if (match(tokens[index], COMMA)) {
         parseToken(tokens[index], COMMA);
         parseToken(tokens[index], STRING);
-        newParameter.push_back(new Parameter(tokens[index-1]->getValue()));
+        //newParameter.push_back(new Parameter(tokens[index-1]->getValue()));
         datalog.addDomain(tokens[index-1]->getValue());
         parseStringList(newParameter);
     }
