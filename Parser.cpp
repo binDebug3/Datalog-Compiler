@@ -181,6 +181,7 @@ std::string Parser::parsePredicate(std::vector<Parameter*> &newParameter) {
         std::string predicateID = tokens[index-1]->getValue();
         parseToken(tokens[index], LEFT_PAREN);
         parseParameter();
+        newParameter.push_back(new Parameter(tokens[index-1]->getValue()));
         parseParameterList(newParameter);
         parseToken(tokens[index], RIGHT_PAREN);
         return predicateID;
