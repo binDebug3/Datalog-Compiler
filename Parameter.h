@@ -15,6 +15,7 @@ public:
     void setUnit(std::string newUnit) {
         unit = newUnit;
     }
+    bool isConstant() const;
     std::string toString();
 
 };

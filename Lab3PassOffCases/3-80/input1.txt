@@ -1,0 +1,19 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+    SK(X,Y)
+
+Facts:
+    SK('a','c').
+    SK('b','c').
+    SK('a','b').
+
+Rules:
+    SK(A,B) :- SK(A,B).
+
+Queries:
+    SK(A,'c')?
+    SK('b','c')?
+    SK('c','c')?
+    SK(A,B)?
+ 

@@ -247,3 +247,7 @@ void Parser::parseParameter() {
         throw printError(STRING);
 }
 
+DatalogProgram Parser::getDatalog() {
+    return datalog;
+}
+

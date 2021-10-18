@@ -117,6 +117,12 @@
 		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/CommentAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Database.cpp">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Database.h">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
 		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/DatalogProgram.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
@@ -135,10 +141,22 @@
 		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/FactsAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Header.cpp">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Header.h">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
 		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/IDAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
 		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/IDAutomaton.h">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Interpreter.cpp">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Interpreter.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
 		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Left_ParenAutomaton.cpp">
@@ -195,6 +213,18 @@
 		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/QueriesAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Relacion.cpp">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Relacion.h">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Relation.cpp">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Relation.h">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
 		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Right_ParenAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
@@ -229,6 +259,12 @@
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
 		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Token.h">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Tuple.cpp">
+			<Option target="Project1_Starter_Code"/>
+		</Unit>
+		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Tuple.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
 		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/main.cpp">

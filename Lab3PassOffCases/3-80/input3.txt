@@ -1,0 +1,50 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+   snap(W,X,Y,Z)
+   csg(X,Y,Z)
+   cp(X,Y)
+   cdh(X,Y,Z)
+   cr(X,Y)
+
+Facts:
+   snap('12345','C. Brown','12 Apple St.','555-1234').
+   snap('67890','L. Van Pelt','34 Pear Ave.','555-5678').
+   snap('22222','P. Patty','56 Grape Blvd.','555-9999').
+   snap('33333','Snoopy','12 Apple St.','555-1234').
+   csg('CS101','12345','A').
+   csg('CS101','67890','B').
+   csg('EE200','12345','C').
+   csg('EE200','22222','B+').
+   csg('EE200','33333','B').
+   csg('CS101','33333','A-').
+   csg('PH100','67890','C+').
+   cp('CS101','CS100').
+   cp('EE200','EE005').
+   cp('EE200','CS100').
+   cp('CS120','CS101').
+   cp('CS121','CS120').
+   cp('CS205','CS101').
+   cp('CS206','CS121').
+   cp('CS206','CS205').
+   cdh('EE200','Tu','10AM').
+   cdh('EE200','W','1PM').
+   cdh('EE200','Th','10AM').
+   cdh('PH100','Tu','11AM').
+   cr('CS101','Turing Aud.').
+   cr('EE200','25 Ohm Hall').
+   cr('PH100','Newton Lab.').
+
+Rules:
+   cr(b,a) :- cr(b,a).
+Queries:
+   snap('33333','Snoopy','12 Apple St.','555-1234')?
+   snap(S,'Snoopy',A,P)?
+   csg(C,'33333',G)?
+   snap(S,N,A,P)?
+   csg(C,S,G)?
+   cp(C,Q)?
+   cdh(C,D,H)?
+   cr(C,R)?
+
+ 

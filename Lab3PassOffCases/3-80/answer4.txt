@@ -1,0 +1,30 @@
+snap(S,N,A,P)? Yes(10)
+  S='0000', N='Woodstock', A='Treehouse', P='555-0000'
+  S='1111', N='Linus', A='Piano St', P='555-1111'
+  S='1212', N='Lucy', A='Home Ln', P='555-1212'
+  S='1234', N='Charley', A='Apple St', P='555-1234'
+  S='3333', N='Marcie', A='Banana St', P='555-3333'
+  S='4321', N='Rerun', A='Peach St', P='555-4321'
+  S='4444', N='Sally', A='Circle Dr', P='555-4444'
+  S='5678', N='Patty', A='Grape Blvd', P='555-5678'
+  S='7890', N='Pig Pen', A='Pear Ave', P='555-7890'
+  S='9876', N='Snoopy', A='Doghouse', P='555-9876'
+snap(Id,'Snoopy',Address,Phone)? Yes(1)
+  Id='9876', Address='Doghouse', Phone='555-9876'
+csg(Course,'33333',Grade)? No
+cp(Course,'CS100')? Yes(2)
+  Course='CS101'
+  Course='EE200'
+cdh('EE200',Day,Hour)? Yes(3)
+  Day='F', Hour='10AM'
+  Day='M', Hour='10AM'
+  Day='W', Hour='1PM'
+cr('CS101',Room)? Yes(1)
+  Room='Study'
+mwfCourses(Course,Room)? No
+Schedule('Snoopy',Course,Room,Day,Hour)? No
+Grades('Snoopy',Course,Grade)? No
+Grades('Woodstock',Course,Grade)? No
+Roll('CS101',Room,Name,Id,Grade)? No
+Roll('EE200',Room,Name,Id,Grade)? No
+Roll('PH100',Room,Name,Id,Grade)? No

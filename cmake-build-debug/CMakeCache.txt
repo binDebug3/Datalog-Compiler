@@ -232,6 +232,18 @@ Project1_Starter_Code_BINARY_DIR:STATIC=/users/guest/d/dps2000/tmp/tmp.Br24oWGyV
 //Value Computed by CMake
 Project1_Starter_Code_SOURCE_DIR:STATIC=/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo
 
+//Value Computed by CMake
+Project_BINARY_DIR:STATIC=/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug
+
+//Value Computed by CMake
+Project_SOURCE_DIR:STATIC=/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo
+
+//Value Computed by CMake
+project3_BINARY_DIR:STATIC=/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug
+
+//Value Computed by CMake
+project3_SOURCE_DIR:STATIC=/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo
+
 
 ########################
 # INTERNAL cache entries

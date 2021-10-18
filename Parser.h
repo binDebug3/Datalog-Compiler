@@ -66,6 +66,8 @@ public:
     void parseStringList(std::vector<Parameter*> &newParameter);
     void parseIDList(std::vector<Parameter*> &newParameter);
     void parseParameter();
+
+    DatalogProgram getDatalog();
 };
 
 #endif //PARSER_H

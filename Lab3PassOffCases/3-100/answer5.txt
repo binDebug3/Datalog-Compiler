@@ -1,0 +1,14 @@
+marriedTo(Y,X)? Yes(2)
+  Y='Bea', X='Zed'
+  Y='Zed', X='Bea'
+childOf(Y,Y)? Yes(2)
+  Y='George Foreman'
+  Y='Zed'
+childOf(Y,'Bea')? Yes(2)
+  Y='Ned'
+  Y='Tim'
+siblings(A,B,B,A)? Yes(1)
+  A='George Foreman', B='George Foreman'
+siblings(A,C,'George Foreman',A)? Yes(2)
+  A='George Foreman', C='George Foreman'
+  A='Tod', C='Tod'

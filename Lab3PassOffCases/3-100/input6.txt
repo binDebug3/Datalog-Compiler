@@ -1,0 +1,19 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+name(a,b,c,d)
+Facts:
+name('1','1','1','1').
+name('2','1','1','1').
+name('2','2','1','1').
+name('2','2','2','1').
+name('2','2','3','3').
+Rules:
+Queries:
+name(t,t,t,t)?
+name(s,s,s,'1')?
+name('2',t,s,'3')?
+name(p,p,q,r)?
+name(p,p,'1',q)?
+
+

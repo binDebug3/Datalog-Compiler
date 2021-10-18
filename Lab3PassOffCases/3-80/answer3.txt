@@ -1,0 +1,37 @@
+snap('33333','Snoopy','12 Apple St.','555-1234')? Yes(1)
+snap(S,'Snoopy',A,P)? Yes(1)
+  S='33333', A='12 Apple St.', P='555-1234'
+csg(C,'33333',G)? Yes(2)
+  C='CS101', G='A-'
+  C='EE200', G='B'
+snap(S,N,A,P)? Yes(4)
+  S='12345', N='C. Brown', A='12 Apple St.', P='555-1234'
+  S='22222', N='P. Patty', A='56 Grape Blvd.', P='555-9999'
+  S='33333', N='Snoopy', A='12 Apple St.', P='555-1234'
+  S='67890', N='L. Van Pelt', A='34 Pear Ave.', P='555-5678'
+csg(C,S,G)? Yes(7)
+  C='CS101', S='12345', G='A'
+  C='CS101', S='33333', G='A-'
+  C='CS101', S='67890', G='B'
+  C='EE200', S='12345', G='C'
+  C='EE200', S='22222', G='B+'
+  C='EE200', S='33333', G='B'
+  C='PH100', S='67890', G='C+'
+cp(C,Q)? Yes(8)
+  C='CS101', Q='CS100'
+  C='CS120', Q='CS101'
+  C='CS121', Q='CS120'
+  C='CS205', Q='CS101'
+  C='CS206', Q='CS121'
+  C='CS206', Q='CS205'
+  C='EE200', Q='CS100'
+  C='EE200', Q='EE005'
+cdh(C,D,H)? Yes(4)
+  C='EE200', D='Th', H='10AM'
+  C='EE200', D='Tu', H='10AM'
+  C='EE200', D='W', H='1PM'
+  C='PH100', D='Tu', H='11AM'
+cr(C,R)? Yes(3)
+  C='CS101', R='Turing Aud.'
+  C='EE200', R='25 Ohm Hall'
+  C='PH100', R='Newton Lab.'

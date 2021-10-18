@@ -25,6 +25,11 @@ public:
     void addQuery(Predicate createQuery);
     void addRule(Rule createRule);
     void addDomain(std::string createDomain);
+
+    std::vector<Predicate> getSchemes() const;
+    std::vector<Predicate> getFacts() const;
+    std::vector<Predicate> getQueries() const;
+    //std::vector<Rule> getRules();
 };
 
 #endif //DATALOGPROGRAM_H

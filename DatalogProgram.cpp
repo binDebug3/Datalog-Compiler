@@ -19,6 +19,18 @@ void DatalogProgram::addDomain(std::string createDomain) {
     domain.insert(createDomain);
 }
 
+std::vector<Predicate> DatalogProgram::getSchemes() const {
+    return schemes;
+}
+std::vector<Predicate> DatalogProgram::getFacts() const {
+    return facts;
+}
+//std::vector<Rule> DatalogProgram::getRules() const {
+//    return rules;
+//}
+std::vector<Predicate> DatalogProgram::getQueries() const {
+    return queries;
+}
 
 std::string DatalogProgram::toString() {
     std::string outputString = "";

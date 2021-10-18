@@ -1,0 +1,84 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SPRING 2021 SEMESTER
+Schemes:
+   snap(W,X,Y,Z)
+   csg(X,Y,Z)
+   cp(X,Y)
+   cdh(X,Y,Z)
+   cr(X,Y)
+   before(X,Y)
+   mwfCourses(X,Y)
+   Schedule(V,W,X,Y,Z)
+   Grades(X,Y,Z)
+   Roll(V,W,X,Y,Z)
+
+Facts:
+   snap('1234','Charley','Apple St','555-1234'). 
+   snap('1111','Linus','Piano St','555-1111'). 
+   snap('1212','Lucy','Home Ln','555-1212'). 
+   snap('3333','Marcie','Banana St','555-3333'). 
+   snap('5678','Patty','Grape Blvd','555-5678').
+   snap('7890','Pig Pen','Pear Ave','555-7890').
+   snap('4321','Rerun','Peach St','555-4321'). 
+   snap('4444','Sally','Circle Dr','555-4444').
+   snap('9876','Snoopy','Doghouse','555-9876').
+   snap('0000','Woodstock','Treehouse','555-0000').
+   csg('CS101','1234','A').
+   csg('CS101','3333','B').
+   csg('CS101','5678','B-').
+   csg('CS101','4444','B').
+   csg('CS101','0000','A-').
+   csg('CS101','1212','A-').
+   csg('EE200','1234','C').
+   csg('EE200','3333','B').
+   csg('EE200','7890','C').
+   csg('EE200','4444','C').
+   csg('EE200','9876','B+').
+   csg('EE200','0000','B').
+   csg('PH100','7890','C+').
+   csg('PH100','9876','C+').
+   csg('PH100','5678','C+').
+   csg('PH100','4321','C+'). 
+   csg('PH100','0000','A').
+   cp('CS101','CS100').
+   cp('EE200','EE005').
+   cp('EE200','CS100').
+   cp('CS120','CS101').
+   cp('CS121','CS120').
+   cp('CS205','CS101').
+   cp('CS206','CS121').
+   cp('CS206','CS205').
+   cdh('CS101','Tu','10AM').
+   cdh('EE200','M','10AM').
+   cdh('EE200','W','1PM').
+   cdh('EE200','F','10AM').
+   cdh('PH100','Tu','11AM').
+   cr('CS101','Study').
+   cr('EE200','Hall').
+   cr('PH100','Lab').
+
+Rules:
+   before(C1,C2):-cp(C2,C1).
+   before(C1,C2):-cp(C3,C1),before(C3,C2).
+   mwfCourses(C,R):-cdh(C,'M',H),cr(C,R).
+   mwfCourses(C,R):-cdh(C,'W',H),cr(C,R).
+   mwfCourses(C,R):-cdh(C,'F',H),cr(C,R).
+   Schedule(N,C,R,D,H):-snap(S,N,A,P),csg(C,S,G),cr(C,R),cdh(C,D,H).
+   Grades(N,C,G):-snap(S,N,A,P),csg(C,S,G).
+   Roll(C,R,N,S,G):-snap(S,N,A,P),csg(C,S,G),cr(C,R).
+
+Queries: 
+   snap(S,N,A,P)? 
+   snap(Id,'Snoopy',Address,Phone)?
+   csg(Course,'33333',Grade)?
+   cp(Course,'CS100')?
+   cdh('EE200',Day,Hour)?
+   cr('CS101',Room)? 
+   mwfCourses (Course,Room)?
+   Schedule('Snoopy',Course,Room,Day,Hour)?
+   Grades('Snoopy',Course,Grade)? 
+   Grades('Woodstock',Course,Grade)?
+   Roll('CS101',Room,Name,Id,Grade)? 
+   Roll('EE200',Room,Name,Id,Grade)? 
+   Roll('PH100',Room,Name,Id,Grade)?
+ 

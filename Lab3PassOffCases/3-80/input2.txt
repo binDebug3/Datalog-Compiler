@@ -1,0 +1,30 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:DeaUoo(H,I,J,K,L,M,N)
+DeaVoo(H,I,J,K,L,M,N)
+DeaWoo(H,I,J,K,L,M,N)
+Facts:DeaWoo('a','a','a','a','a','a','b').
+DeaWoo('a','b','a','a','a','a','b').
+DeaWoo('a','c','a','a','a','a','b').
+DeaWoo('a','d','a','a','a','a','b').
+DeaWoo('a','e','a','a','a','a','b').
+DeaWoo('a','a','a','a','a','f','b').
+DeaWoo('a','a','a','a','a','g','b').
+DeaWoo('a','k','a','a','a','h','b').
+DeaUoo('a','a','c','a','a','a','b').
+DeaUoo('a','b','a','a','a','a','b').
+DeaUoo('a','a','a','a','a','a','b').
+DeaVoo('a','a','a','s','a','a','b').
+DeaVoo('r','a','a','a','a','a','b').
+DeaVoo('x','a','a','a','a','a','b').
+DeaVoo('d','a','a','a','a','a','b').
+DeaVoo('z','a','a','a','a','a','b').
+DeaVoo('b','a','a','a','a','a','b').
+Rules:DeaVoo(A,B,C,D,E,F,G) :- DeaWoo(A,'B',C,D,E,F,G).
+Queries:DeaUoo(A,B,C,D,E,F,G)?
+DeaVoo(A,B,'a',D,E,F,G)?
+DeaUoo(A,B,'b',D,E,F,G)?
+DeaWoo(A,B,'a',D,E,F,Applestrudle)?
+DeaWoo(A,B,'a',D,E,F,G)?
+DeaWoo('a','a','a','a','a','a','b')?
+ 

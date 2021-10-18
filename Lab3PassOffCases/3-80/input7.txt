@@ -1,0 +1,19 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+  Fox(A,B,C)
+  gOAT(aMINAL,sTUBBORN)
+Facts:
+  Fox('brown','tail','sly').
+  gOAT('kids','cans').
+  gOAT('kids','').
+  gOAT('','').
+  Fox('red','tail','sly').
+Rules:
+  Fox(a,b,c) :- Fox(a,b,c).
+Queries:
+  Fox(COLOR,appearance,ATTITUDE)?
+  gOAT(POSTERITY,DIET)?
+  gOAT(POSTERITY,'cans')?
+  
+

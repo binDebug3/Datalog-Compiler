@@ -1,5 +1,6 @@
 #include "Lexer.h"
 #include "Parser.h"
+#include "Interpreter.h"
 
 #include <iostream>
 #include <fstream>
@@ -44,14 +45,19 @@ int main(int argc, char** argv) {
     Parser* parser = new Parser();
     try {
         parser->parseDatalogProgram(lexer->sendTokens());
-        std::cout << parser->toString();
+        //std::cout << parser->toString();
     }
     catch (std::string E) {
         cout << "Failure!" << std::endl << E;
     }
+    //std::cout << std::endl << "Starting Project 3:" << std::endl;
+    Interpreter* interpreter = new Interpreter(parser->getDatalog());
+
+    std::cout << interpreter->toString();
     //end
     in.close();
     delete lexer;
     delete parser;
+    delete interpreter;
     return 0;
 }

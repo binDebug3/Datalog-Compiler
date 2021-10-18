@@ -1,0 +1,31 @@
+DeaUoo(A,B,C,D,E,F,G)? Yes(3)
+  A='a', B='a', C='a', D='a', E='a', F='a', G='b'
+  A='a', B='a', C='c', D='a', E='a', F='a', G='b'
+  A='a', B='b', C='a', D='a', E='a', F='a', G='b'
+DeaVoo(A,B,'a',D,E,F,G)? Yes(6)
+  A='a', B='a', D='s', E='a', F='a', G='b'
+  A='b', B='a', D='a', E='a', F='a', G='b'
+  A='d', B='a', D='a', E='a', F='a', G='b'
+  A='r', B='a', D='a', E='a', F='a', G='b'
+  A='x', B='a', D='a', E='a', F='a', G='b'
+  A='z', B='a', D='a', E='a', F='a', G='b'
+DeaUoo(A,B,'b',D,E,F,G)? No
+DeaWoo(A,B,'a',D,E,F,Applestrudle)? Yes(8)
+  A='a', B='a', D='a', E='a', F='a', Applestrudle='b'
+  A='a', B='a', D='a', E='a', F='f', Applestrudle='b'
+  A='a', B='a', D='a', E='a', F='g', Applestrudle='b'
+  A='a', B='b', D='a', E='a', F='a', Applestrudle='b'
+  A='a', B='c', D='a', E='a', F='a', Applestrudle='b'
+  A='a', B='d', D='a', E='a', F='a', Applestrudle='b'
+  A='a', B='e', D='a', E='a', F='a', Applestrudle='b'
+  A='a', B='k', D='a', E='a', F='h', Applestrudle='b'
+DeaWoo(A,B,'a',D,E,F,G)? Yes(8)
+  A='a', B='a', D='a', E='a', F='a', G='b'
+  A='a', B='a', D='a', E='a', F='f', G='b'
+  A='a', B='a', D='a', E='a', F='g', G='b'
+  A='a', B='b', D='a', E='a', F='a', G='b'
+  A='a', B='c', D='a', E='a', F='a', G='b'
+  A='a', B='d', D='a', E='a', F='a', G='b'
+  A='a', B='e', D='a', E='a', F='a', G='b'
+  A='a', B='k', D='a', E='a', F='h', G='b'
+DeaWoo('a','a','a','a','a','a','b')? Yes(1)

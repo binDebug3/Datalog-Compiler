@@ -1,0 +1,50 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+   ancestorOf(A,B)
+   childOf(A,B)
+   relativeOf(A,B)
+   descendantOf(A,B)
+   marriedTo(A,B)
+   siblingOf(A,B)
+Facts:
+   marriedTo('Zed','Bea').
+   marriedTo('Jack','Jill').
+   marriedTo('Ned','Jan').
+   marriedTo('Tim','Jane').
+   marriedTo('Fred','Anne').
+   marriedTo('Dan','Kim').
+   childOf('Jill','Zed').
+   childOf('Ned','Bea').
+   childOf('Tim','Jack').
+   childOf('Sue','Jack').
+   childOf('Anne','Jill').
+   childOf('Anna','Dan').
+   childOf('Stan','Jan').
+   childOf('Dan','Jan').
+   childOf('Lou','Jane').
+   childOf('Mary','Tim').
+   childOf('Bill','Fred').
+   childOf('Tom','Fred').
+   childOf('Ron','Dan').
+   childOf('Anna','Kim').
+Rules:
+   marriedTo(X,Y):-marriedTo(Y,X).
+   childOf(X,Y):-childOf(X,Z),marriedTo(Y,Z).
+   siblingOf(X,Y):-childOf(X,Z),childOf(Y,Z).
+   descendantOf(X,Y):-childOf(X,Y).
+   descendantOf(X,Y):-childOf(X,Z),descendantOf(Z,Y).
+   ancestorOf(X,Y):-descendantOf(Y,X).
+   relativeOf(X,Y):-descendantOf(X,Z),descendantOf(Y,Z).
+Queries:
+   marriedTo(Y,'Jan')?
+   childOf(Y,'Jack')?
+   siblingOf(Y,X)?
+   descendantOf(Y,X)?
+   ancestorOf(Y,X)?
+   relativeOf(Y,X)?
+   marriedTo('Dan',X)?
+   marriedTo('Ned',X)?
+   childOf('Anna',X)?
+   childOf(Y,'Dan')?
+ 
