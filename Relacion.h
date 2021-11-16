@@ -36,8 +36,8 @@ public:
     Relation* select(int index, int otherIndex);
     Relation* project(std::vector<int> indices);
     Relation* rename(std::vector<std::string> attributes);
-    //TODO
     Relation* join(Relation* joinWith);
+    void unionRelations(Relation* unionWith);
 
     std::string toString();
 };

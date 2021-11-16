@@ -29,7 +29,7 @@ public:
     std::vector<Predicate> getSchemes() const;
     std::vector<Predicate> getFacts() const;
     std::vector<Predicate> getQueries() const;
-    //std::vector<Rule> getRules();
+    std::vector<Rule> getRules() const;
 };
 
 #endif //DATALOGPROGRAM_H

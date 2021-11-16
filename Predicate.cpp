@@ -22,7 +22,9 @@ std::vector<Parameter*> Predicate::getParameters(bool asParameters) const {
 std::string Predicate::getPofIndex(int index) {
     return parameters.at(index)->toString();
 }
-
+int Predicate::getLength() const {
+    return parameters.size();
+}
 
 std::string Predicate::toString() {
     std::string output = "";

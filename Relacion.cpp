@@ -118,7 +118,7 @@ Relation* Relation::rename(std::vector<std::string> attributes) {
     createRelation->setTuples(tuples);
     return createRelation;
 }
-
+//TODO test isjoinable
 int Relation::isJoinable(Header first, Header second) {
     std::vector<int> firstIndices;
     std::vector<int> secondIndices;
@@ -146,7 +146,7 @@ int Relation::isJoinable(Header first, Header second) {
         return 3;
     }
 }
-
+//TODO test combineHeaders
 Header Relation::combineHeaders(int decision, Header headerWith) {
     bool insertAtt = false;
     Header newHeader;
@@ -170,7 +170,7 @@ Header Relation::combineHeaders(int decision, Header headerWith) {
     newHeader.setAttributes(buildAttributes);
     return newHeader;
 }
-
+//TODO test intersect
 std::set<Tuple> Relation::intersect(std::set<Tuple> tuplesWith) {
     bool addTuple = false;
     std::set<Tuple> newTuples;
@@ -192,7 +192,7 @@ std::set<Tuple> Relation::intersect(std::set<Tuple> tuplesWith) {
     }
     return newTuples;
 }
-
+//TODO test crossProduct
 std::set<Tuple> Relation::crossProduct(std::set<Tuple> tuplesWith) {
     std::set<Tuple> newTuples;
     auto iterThis = this->tuples.begin();
@@ -215,7 +215,7 @@ std::set<Tuple> Relation::crossProduct(std::set<Tuple> tuplesWith) {
     }
     return newTuples;
 }
-
+//TODO test combineTuples
 Tuple Relation::combineTuples(Tuple tupleThis, Tuple tupleWith) {
     std::vector<int> confirmFirst;
     std::vector<int> confirmSecond;
@@ -262,7 +262,7 @@ Tuple Relation::combineTuples(Tuple tupleThis, Tuple tupleWith) {
     combinedTuple.setValues(combinedValues);
     return combinedTuple;
 }
-
+//TODO test join
 Relation* Relation::join(Relation* joinWith) {
     std::set<Tuple> newTuples;
     std::vector<int> natJoinIndex;
@@ -296,6 +296,23 @@ Relation* Relation::join(Relation* joinWith) {
     joinedRelation->setTuples(newTuples);
     return joinedRelation;
 }
+//TODO test union relations
+void Relation::unionRelations(Relation* unionWith) {
+    bool relationsMatch = true;
+    auto iterWith = unionWith->getTuples().begin();
+    for (unsigned int j = 0; j < this->header.getLength(); j++)
+        if (j < unionWith->getHeader().getLength() && this->header.getAttributeAt(j) != unionWith->getHeader().getAttributeAt(j))
+            relationsMatch = false;
+    if (relationsMatch) {
+        for (unsigned int j = 0; j < unionWith->getTuples().size(); j++) {
+            if (this->tuples.insert(*iterWith).second) {
+                true;
+                //print out the tuple as something new that was added
+            }
+        }
+    }
+}
+
 
 std::string Relation::toString() {
     std::string output;

@@ -16,8 +16,6 @@ public:
     void addRelation(std::string keyName, Relation* scheme);
     void addDatabaseTuple(std::string keyName, Tuple tuple);
     std::map<std::string, Relation*> checkMap();
-    //TODO
-    void unionWithDatabase(Relation* addRelation);
 
     std::string toString();
 };

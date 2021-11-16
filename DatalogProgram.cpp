@@ -25,9 +25,9 @@ std::vector<Predicate> DatalogProgram::getSchemes() const {
 std::vector<Predicate> DatalogProgram::getFacts() const {
     return facts;
 }
-//std::vector<Rule> DatalogProgram::getRules() const {
-//    return rules;
-//}
+std::vector<Rule> DatalogProgram::getRules() const {
+    return rules;
+}
 std::vector<Predicate> DatalogProgram::getQueries() const {
     return queries;
 }

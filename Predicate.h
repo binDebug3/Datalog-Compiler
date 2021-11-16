@@ -18,7 +18,7 @@ public:
     std::vector<std::string> getParameters() const;
     std::vector<Parameter*> getParameters(bool asParameters) const;
     std::string getPofIndex(int index);
-
+    int getLength() const;
     std::string toString();
 };
 

@@ -8,6 +8,7 @@ Interpreter::Interpreter(const DatalogProgram& datalog) {
     this->datalog = datalog;
     buildSchemes(datalog.getSchemes());
     buildFacts(datalog.getFacts());
+    buildRules(datalog.getRules());
     buildQueries(datalog.getQueries());
     //std:: cout << database.toString() << std::endl << std::endl << "Start Project 3: " << std::endl;
 }
@@ -39,12 +40,47 @@ void Interpreter::buildQueries(std::vector<Predicate> queries) {
         //std::cout << evaluateQueries[i] << std::endl;
     }
 }
+//TODO test buildRules
 void Interpreter::buildRules(std::vector<Rule> rules) {
-    //evaluate the predicates on the right-hand side of the rule
-    //join the relations that result
-    //project the columns that appear in the head predicate
-    //rename the relations to make it union-compatible (at least make sure the indicies are matched up
-    //union with the relation in the database
+    for (unsigned int i = 0; i < rules.size(); i++) {
+        //evaluate the predicates on the right-hand side of the rule
+        for (unsigned int j = 0; j < rules.at(i).getLength(); j++) {
+            evaluateRules.push_back(this->evaluatePredicate(*rules.at(i).getRuleAt(j)));
+        }
+        //TODO fixed point algorithm
+        //join the relations that result
+        Relation *joinedRelations = new Relation();
+        //idk if I need to do this but I defined joinedRelations with at least one actual relation explicitly
+        joinedRelations->setName(evaluateRules.at(0)->getName());
+        joinedRelations->setHeader(evaluateRules.at(0)->getHeader());
+        joinedRelations->setTuples(evaluateRules.at(0)->getTuples());
+        for (unsigned int i = 1; i < evaluateRules.size(); i++) {
+            joinedRelations->join(evaluateRules.at(i));
+        }
+
+        //project the columns that appear in the head predicate
+        std::vector<int> projectIndex;
+        Header relationHead = joinedRelations->getHeader();
+        Predicate *headPred = rules.at(i).getHead();
+        for (unsigned int i = 1; i < relationHead.getLength(); i++) {
+            for (unsigned int j = 1; j < headPred->getLength(); j++) {
+                if (relationHead.getAttributeAt(i) == headPred->getPofIndex(j)) {
+                    projectIndex.push_back(i);
+                }
+            }
+        }
+        joinedRelations->project(projectIndex);
+
+        //rename the relations to make it union-compatible (at least make sure the indices are matched up)
+        std::string searchKey = rules.at(i).getHead()->getName();
+        Relation* namingScheme = database.checkMap()[searchKey];
+        Header renameHeader = namingScheme->getHeader();
+        std::vector<std::string> renameAttributes = renameHeader.getAttributes();
+        joinedRelations->rename(renameAttributes);
+
+        //union with the relation in the database
+        namingScheme->unionRelations(joinedRelations);
+    }
 }
 
 Relation* Interpreter::evaluatePredicate(Predicate predicate) {

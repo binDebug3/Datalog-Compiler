@@ -6,6 +6,16 @@ Rule::Rule(Predicate* newHeadPredicate, std::vector<Predicate*> bodyPredicates) 
 }
 Rule::~Rule() {}
 
+int Rule::getLength() const {
+    return bodyPredicates.size();
+}
+Predicate* Rule::getHead() const {
+    return headPredicate;
+}
+Predicate* Rule::getRuleAt(int index) const{
+    return bodyPredicates.at(index);
+}
+
 std::string Rule::toString() {
     std::string output = "";
     output += headPredicate->toString() + " :- ";

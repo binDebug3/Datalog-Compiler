@@ -28,7 +28,6 @@ Lexer::Lexer() {
 }
 
 Lexer::~Lexer() {
-    // TODO: need to clean up the memory in `automata` and `tokens`
     for (unsigned int i=0; i < automata.size(); i++) {
         delete automata[i];
     }
