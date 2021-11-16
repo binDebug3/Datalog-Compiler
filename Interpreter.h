@@ -4,7 +4,7 @@
 #include <map>
 #include "DatalogProgram.h"
 #include "Database.h"
-#include "Relation.h"
+#include "Relacion.h"
 #include "Predicate.h"
 #include "Rule.h"
 
@@ -18,7 +18,8 @@ private:
     void buildSchemes(std::vector<Predicate> schemes);
     void buildFacts(std::vector<Predicate> facts);
     void buildQueries(std::vector<Predicate> queries);
-    //void buildRules(std::vector<Rule> rules);
+    //TODO
+    void buildRules(std::vector<Rule> rules);
     Relation* evaluatePredicate(Predicate predicate);
 
 public:

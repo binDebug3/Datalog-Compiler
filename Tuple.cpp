@@ -18,4 +18,8 @@ std::string Tuple::getValueAt(int index) const {
 std::vector<std::string> Tuple::getValues() const {
     return values;
 }
+int Tuple::getLength() const {
+    return values.size();
+}
+
 

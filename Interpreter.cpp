@@ -39,7 +39,13 @@ void Interpreter::buildQueries(std::vector<Predicate> queries) {
         //std::cout << evaluateQueries[i] << std::endl;
     }
 }
-//void Interpreter::buildRules(std::vector<Rule> rules) {}
+void Interpreter::buildRules(std::vector<Rule> rules) {
+    //evaluate the predicates on the right-hand side of the rule
+    //join the relations that result
+    //project the columns that appear in the head predicate
+    //rename the relations to make it union-compatible (at least make sure the indicies are matched up
+    //union with the relation in the database
+}
 
 Relation* Interpreter::evaluatePredicate(Predicate predicate) {
     //lots of data members

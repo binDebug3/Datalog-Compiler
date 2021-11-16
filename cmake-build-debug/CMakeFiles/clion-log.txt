@@ -1,4 +1,4 @@
-CMake executable not found: /usr/bin/cmake Configure Disable profile
-
-Cannot get compiler information:
-	Unable to create a temporary file
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /users/guest/d/dps2000/tmp/tmp.Br24oWGyVo
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug

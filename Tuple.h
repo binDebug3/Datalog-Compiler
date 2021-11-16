@@ -18,6 +18,7 @@ public:
     void setValueAt(int index, std::string value);
     std::string getValueAt(int index) const;
     std::vector<std::string> getValues() const;
+    int getLength() const;
 };
 
 #endif //TUPLE_H
