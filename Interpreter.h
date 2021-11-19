@@ -19,8 +19,8 @@ private:
 
     void buildSchemes(std::vector<Predicate> schemes);
     void buildFacts(std::vector<Predicate> facts);
-    void buildQueries(std::vector<Predicate> queries);
-    void buildRules(std::vector<Rule> rules);
+    void buildQueries(const std::vector<Predicate>& queries);
+    void buildRules(const std::vector<Rule>& rules);
     Relation* evaluatePredicate(Predicate predicate);
 
 public:

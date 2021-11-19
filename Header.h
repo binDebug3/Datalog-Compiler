@@ -9,10 +9,10 @@ private:
     std::vector<std::string> attributes;
 public:
     void setAttributes(std::vector<std::string> attributes);
-    void addAttribute(std::string value);
+    void addAttribute(const std::string& value);
     std::vector<std::string> getAttributes() const;
-    std::string getAttributeAt(int index);
-    int getLength();
+    std::string getAttributeAt(unsigned int index);
+    unsigned int getLength();
 
 };
 

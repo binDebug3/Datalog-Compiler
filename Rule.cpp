@@ -4,9 +4,9 @@ Rule::Rule(Predicate* newHeadPredicate, std::vector<Predicate*> bodyPredicates) 
     headPredicate = newHeadPredicate;
     this->bodyPredicates = bodyPredicates;
 }
-Rule::~Rule() {}
+Rule::~Rule() = default;
 
-int Rule::getLength() const {
+unsigned int Rule::getLength() const {
     return bodyPredicates.size();
 }
 Predicate* Rule::getHead() const {
@@ -17,7 +17,7 @@ Predicate* Rule::getRuleAt(int index) const{
 }
 
 std::string Rule::toString() {
-    std::string output = "";
+    std::string output;
     output += headPredicate->toString() + " :- ";
     for (unsigned int i=0; i<bodyPredicates.size()-1; i++) {
         output += bodyPredicates[i]->toString() + ",";

@@ -13,7 +13,7 @@ private:
 public:
     Rule(Predicate* newHeadPredicate, std::vector<Predicate*> bodyPredicates);
     ~Rule();
-    int getLength() const;
+    unsigned int getLength() const;
     Predicate* getRuleAt(int index) const;
     Predicate* getHead() const;
     std::string toString();

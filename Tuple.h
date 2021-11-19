@@ -14,13 +14,12 @@ public:
     }
     Tuple();
 
-    void addValue(std::string value);
-    void removeValue(int index);
+    void addValue(const std::string& value);
     void setValues(std::vector<std::string> values);
     void setValueAt(int index, std::string value);
-    std::string getValueAt(int index) const;
+    std::string getValueAt(unsigned int index) const;
     std::vector<std::string> getValues() const;
-    int getLength() const;
+    unsigned int getLength() const;
     std::string toString(Header header) const;
 };
 

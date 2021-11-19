@@ -45,7 +45,7 @@ Header Relation::getHeader() const {
 //}
 
 
-Relation* Relation::select(int index, const std::string& value) {
+Relation* Relation::select(unsigned int index, const std::string& value) {
     auto* createRelation = new Relation();
     createRelation->setName(name);
     createRelation->setHeader(header);
@@ -59,7 +59,7 @@ Relation* Relation::select(int index, const std::string& value) {
     return createRelation;
     //need to delete the new relation pointers?
 }
-Relation* Relation::select(int index, int otherIndex) {
+Relation* Relation::select(unsigned int index, unsigned int otherIndex) {
     auto* createRelation = new Relation();
     createRelation->setName(name);
     createRelation->setHeader(header);
@@ -75,8 +75,8 @@ Relation* Relation::select(int index, int otherIndex) {
     std::vector<std::string> yaFound;
     bool found;
     for(int i=0; i<header.getLength(); i++) {
-        for (unsigned int j = 0; j < yaFound.size(); j++) {
-            if (yaFound[j] == header.getAttributeAt(i))
+        for (auto & j : yaFound) {
+            if (j == header.getAttributeAt(i))
                 found = true;
         }
         if (!found) {
@@ -89,7 +89,7 @@ Relation* Relation::select(int index, int otherIndex) {
     //need to delete the new relation pointers?
 }
 Relation* Relation::project(std::vector<int> indices) {
-    Relation* createRelation = new Relation();
+    auto* createRelation = new Relation();
     createRelation->setName(name);
     Header createHeader;
     std::vector<Tuple> createTuples;
@@ -98,8 +98,8 @@ Relation* Relation::project(std::vector<int> indices) {
 //        createTuples.push_back(insertTuple);
 //    }
     //build the new header
-    for (unsigned int i=0; i<indices.size(); i++) {
-        createHeader.addAttribute(header.getAttributeAt(indices[i]));
+    for (int indice : indices) {
+        createHeader.addAttribute(header.getAttributeAt(indice));
     }
     //modify the vector. This is the project part
     std::vector<std::string> redoTuple;
@@ -132,7 +132,7 @@ Relation* Relation::project(std::vector<int> indices) {
         Tuple tempTuple;
         createTuples.push_back(tempTuple);
         for (unsigned int keepIndex=0; keepIndex < indices.size(); keepIndex++) {
-            for (int attributeIndex=0; attributeIndex < iterTup->getLength(); attributeIndex++) {
+            for (unsigned int attributeIndex=0; attributeIndex < iterTup->getLength(); attributeIndex++) {
                 if (attributeIndex == indices[keepIndex]) {
                     createTuples.at(tupleIndex).addValue(iterTup->getValueAt(attributeIndex));
                 }
@@ -144,14 +144,14 @@ Relation* Relation::project(std::vector<int> indices) {
     createRelation->setHeader(createHeader);
     //convert the vector to a set and update the tuples
     std::set<Tuple> sendNewTuples;
-    for (unsigned int i=0; i<createTuples.size(); i++) {
-        sendNewTuples.insert(createTuples[i]);
+    for (auto & createTuple : createTuples) {
+        sendNewTuples.insert(createTuple);
     }
     createRelation->setTuples(sendNewTuples);
     return createRelation;
 }
 Relation* Relation::rename(std::vector<std::string> attributes) {
-    Relation* createRelation = new Relation();
+    auto* createRelation = new Relation();
     createRelation->setName(name);
     Header createHeader;
     createHeader.setAttributes(attributes);
@@ -163,8 +163,8 @@ Relation* Relation::rename(std::vector<std::string> attributes) {
 int Relation::isJoinable(Header first, Header second) {
     std::vector<int> firstIndices;
     std::vector<int> secondIndices;
-    for (int i=0; i<first.getLength(); i++) {
-        for (int j = 0; j < second.getLength(); j++) {
+    for (unsigned int i=0; i<first.getLength(); i++) {
+        for (unsigned int j = 0; j < second.getLength(); j++) {
             if (first.getAttributeAt(i) == second.getAttributeAt(j)) {
                 firstIndices.push_back(i);
                 secondIndices.push_back(j);
@@ -174,34 +174,34 @@ int Relation::isJoinable(Header first, Header second) {
     if (firstIndices.size() == first.getLength()) {
         return 1; //intersect
     }
-    else if (firstIndices.size() == 0) {
+    else if (firstIndices.empty()) {
         return 2; //cross product
     }
     else {
-        for (unsigned int i=0; i < firstIndices.size(); i++) {
-            sendFirstHeader.push_back(firstIndices.at(i));
+        for (int & firstIndice : firstIndices) {
+            sendFirstHeader.push_back(firstIndice);
         }
-        for (unsigned int i=0; i < secondIndices.size(); i++) {
-            sendSecondHeader.push_back(secondIndices.at(i));
+        for (int & secondIndice : secondIndices) {
+            sendSecondHeader.push_back(secondIndice);
         }
         return 3;
     }
 }
 //TODO test combineHeaders
 Header Relation::combineHeaders(int decision, Header headerWith) {
-    bool insertAtt = false;
+    bool insertAtt;
     Header newHeader;
     std::vector<std::string> buildAttributes = this->header.getAttributes();
     if (decision == 2) { //cross product
-        for (int i=0; i<headerWith.getLength(); i++) {
+        for (unsigned int i=0; i<headerWith.getLength(); i++) {
             buildAttributes.push_back(headerWith.getAttributeAt(i));
         }
     }
     else if (decision == 3){ //natural join
-        for (int i=0; i<headerWith.getLength(); i++) {
+        for (unsigned int i = 0; i < headerWith.getLength(); i++) {
             insertAtt = false;
-            for (unsigned int j=0; j<sendSecondHeader.size(); j++) {
-                if (i == sendSecondHeader.at(j))
+            for (int j : sendSecondHeader) {
+                if (i == j)
                     insertAtt = true;
             }
             if (!insertAtt)
@@ -212,8 +212,8 @@ Header Relation::combineHeaders(int decision, Header headerWith) {
     return newHeader;
 }
 //TODO test intersect
-std::set<Tuple> Relation::intersect(std::set<Tuple> tuplesWith) {
-    int addTupleCount = 0;
+std::set<Tuple> Relation::intersect(const std::set<Tuple>& tuplesWith) {
+    int addTupleCount;
     std::set<Tuple> newTuples;
     auto iterThis = this->tuples.begin();
     auto iterWith = tuplesWith.begin();
@@ -221,8 +221,8 @@ std::set<Tuple> Relation::intersect(std::set<Tuple> tuplesWith) {
         iterWith = tuplesWith.begin();
         for (unsigned int rowJ=0; rowJ < tuplesWith.size(); rowJ++) {
             addTupleCount = 0;
-            for (int colT=0; colT < this->tuples.begin()->getLength(); colT++) {
-                for (int colJ=0; colJ < tuplesWith.begin()->getLength(); colJ++) {
+            for (unsigned int colT=0; colT < this->tuples.begin()->getLength(); colT++) {
+                for (unsigned int colJ=0; colJ < tuplesWith.begin()->getLength(); colJ++) {
                     if (iterThis->getValueAt(colT) == iterWith->getValueAt(colJ))
                         addTupleCount++;
                 }
@@ -236,7 +236,7 @@ std::set<Tuple> Relation::intersect(std::set<Tuple> tuplesWith) {
     return newTuples;
 }
 //TODO test crossProduct
-std::set<Tuple> Relation::crossProduct(std::set<Tuple> tuplesWith) {
+std::set<Tuple> Relation::crossProduct(const std::set<Tuple>& tuplesWith) {
     std::set<Tuple> newTuples;
     auto iterThis = this->tuples.begin();
     auto iterWith = tuplesWith.begin();
@@ -246,7 +246,7 @@ std::set<Tuple> Relation::crossProduct(std::set<Tuple> tuplesWith) {
         iterWith = tuplesWith.begin();
         for (unsigned int rowJ = 0; rowJ < tuplesWith.size(); rowJ++) {
             std::vector<std::string> newValues = iterThis->getValues();
-            for (int col = 0; col < iterWith->getLength(); col++) {
+            for (unsigned int col = 0; col < iterWith->getLength(); col++) {
                 newValues.push_back(iterWith->getValueAt(col));
             }
             Tuple tempTuple;
@@ -259,14 +259,14 @@ std::set<Tuple> Relation::crossProduct(std::set<Tuple> tuplesWith) {
     return newTuples;
 }
 //TODO test combineTuples
-Tuple Relation::combineTuples(Tuple tupleThis, Tuple tupleWith) {
+Tuple Relation::combineTuples(const Tuple& tupleThis, const Tuple& tupleWith) {
     std::vector<int> confirmFirst;
     std::vector<int> confirmSecond;
     Tuple combinedTuple;
     std::vector<std::string> combinedValues;
     //get a list of where the attributes match
-    for (int j = 0; j < tupleWith.getLength(); j++) {
-        for (int i = 0; i < tupleThis.getLength(); i++) {
+    for (unsigned int j = 0; j < tupleWith.getLength(); j++) {
+        for (unsigned int i = 0; i < tupleThis.getLength(); i++) {
             if (tupleThis.getValueAt(i) == tupleWith.getValueAt(j)) {
                 confirmFirst.push_back(i);
                 confirmSecond.push_back(j);
@@ -303,14 +303,14 @@ Tuple Relation::combineTuples(Tuple tupleThis, Tuple tupleWith) {
     //create new vector of indices not in confirmSecond
     if (firstMatches && secondMatches) {
         std::vector<int> tupleWithIndex;
-        std::vector<int> toAddIndex;
-        for (int a=0; a < tupleWith.getLength(); a++) {
+        std::vector<unsigned int> toAddIndex;
+        for (unsigned int a=0; a < tupleWith.getLength(); a++) {
             tupleWithIndex.push_back(a);
         }
-        for (unsigned int a=0; a < tupleWithIndex.size(); a++) {
+        for (unsigned int a = 0; a < tupleWithIndex.size(); a++) {
             bool toRemove = true;
-            for (unsigned int b = 0; b < sendSecondHeader.size(); b++) {
-                if (a == sendSecondHeader[b])
+            for (int b : sendSecondHeader) {
+                if (a == b)
                     toRemove = false;
             }
             if (toRemove)
@@ -331,11 +331,11 @@ Tuple Relation::combineTuples(Tuple tupleThis, Tuple tupleWith) {
             }
         }*/
         //build new tuple
-        for (int i = 0; i < tupleThis.getLength(); i++) {
+        for (unsigned int i = 0; i < tupleThis.getLength(); i++) {
             combinedValues.push_back(tupleThis.getValueAt(i));
         }
-        for (unsigned int i = 0; i < toAddIndex.size(); i++) {
-            combinedValues.push_back(tupleWith.getValueAt(toAddIndex.at(i)));
+        for (unsigned int i : toAddIndex) {
+            combinedValues.push_back(tupleWith.getValueAt(i));
         }
     }
     combinedTuple.setValues(combinedValues);
@@ -346,7 +346,7 @@ Relation* Relation::join(Relation* joinWith) {
     std::set<Tuple> newTuples;
     std::vector<int> natJoinIndex;
     std::set<Tuple> tuplesWith = joinWith->getTuples();
-    Relation* joinedRelation = new Relation();
+    auto* joinedRelation = new Relation();
 
     //compare headers and make a new header with the correct attributes
     int decision = isJoinable(this->getHeader(), joinWith->getHeader());
@@ -381,16 +381,16 @@ Relation* Relation::join(Relation* joinWith) {
 bool Relation::unionRelations(Relation* unionWith) {
     bool relationsMatch = true;
     bool unionAdded = false;
-    for (int j = 0; j < this->header.getLength(); j++)
+    for (unsigned int j = 0; j < this->header.getLength(); j++)
         if (j < unionWith->getHeader().getLength() && this->header.getAttributeAt(j) != unionWith->getHeader().getAttributeAt(j))
             relationsMatch = false;
     if (relationsMatch) {
         std::vector<Tuple> vectorTuples = unionWith->getVectorOfTuples();
-        for (unsigned int j = 0; j < vectorTuples.size(); j++) {
-            if (this->tuples.insert(vectorTuples[j]).second) {
+        for (auto & vectorTuple : vectorTuples) {
+            if (this->tuples.insert(vectorTuple).second) {
                 unionAdded = true;
                 //print out the tuple as something new that was added
-                std::cout << vectorTuples[j].toString(unionWith->getHeader());
+                std::cout << vectorTuple.toString(unionWith->getHeader());
             }
         }
     }
@@ -400,9 +400,9 @@ bool Relation::unionRelations(Relation* unionWith) {
 
 std::string Relation::toString() {
     std::string output;
-    for (Tuple t : tuples) {
+    for (const Tuple& t : tuples) {
         output += "  ";
-        for (int i=0; i<header.getLength(); i++) {
+        for (unsigned int i=0; i<header.getLength(); i++) {
             output += header.getAttributeAt(i) + "=" + t.getValueAt(i) + ", ";
         }
         output = output.substr(0, output.length()-2);

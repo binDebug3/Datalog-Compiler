@@ -1,16 +1,16 @@
 #include "Database.h"
 
-Database::Database() {}
+Database::Database() = default;
 Database::~Database() {
     for(std::pair<std::string, Relation*> element : relationsMap) {
         delete element.second;
     }
 }
 
-void Database::addRelation(std::string keyName, Relation* scheme) {
+void Database::addRelation(const std::string& keyName, Relation* scheme) {
     relationsMap.insert(std::pair<std::string, Relation*>(keyName, scheme));
 }
-void Database::addDatabaseTuple(std::string keyName, Tuple createTuple) {
+void Database::addDatabaseTuple(const std::string& keyName, const Tuple& createTuple) {
     relationsMap.find(keyName)->second->addTuples(createTuple);
 }
 std::map<std::string, Relation*> Database::checkMap() {

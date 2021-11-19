@@ -13,8 +13,8 @@ public:
     Database();
     ~Database();
 
-    void addRelation(std::string keyName, Relation* scheme);
-    void addDatabaseTuple(std::string keyName, Tuple tuple);
+    void addRelation(const std::string& keyName, Relation* scheme);
+    void addDatabaseTuple(const std::string& keyName, const Tuple& tuple);
     std::map<std::string, Relation*> checkMap();
 
     std::string toString();

@@ -11,47 +11,47 @@ Interpreter::Interpreter(const DatalogProgram& datalog) {
 Interpreter::~Interpreter() = default;
 
 void Interpreter::buildSchemes(std::vector<Predicate> inputSchemes) {
-    for (unsigned int i=0; i<inputSchemes.size(); i++) {
+    for (auto & inputScheme : inputSchemes) {
         auto scheme = new Relation();
-        std::string keyName = inputSchemes[i].getName();
+        std::string keyName = inputScheme.getName();
         scheme->setName(keyName);
         Header header;
-        header.setAttributes(inputSchemes[i].getParameters());
+        header.setAttributes(inputScheme.getParameters());
         scheme->setHeader(header);
         database.addRelation(keyName, scheme);
     }
 }
 void Interpreter::buildFacts(std::vector<Predicate> facts) {
-    for (unsigned int i=0; i<facts.size(); i++) {
+    for (auto & fact : facts) {
         Tuple createTuple;
-        for (int j=0; j<facts[i].getParameters().size(); j++) {
-            createTuple.addValue(facts[i].getPofIndex(j));
+        for (int j=0; j<fact.getParameters().size(); j++) {
+            createTuple.addValue(fact.getPofIndex(j));
         }
-        database.addDatabaseTuple(facts[i].getName(), createTuple);
+        database.addDatabaseTuple(fact.getName(), createTuple);
     }
 }
-void Interpreter::buildQueries(std::vector<Predicate> queries) {
-    for (unsigned int i = 0; i < queries.size(); i++) {
-        evaluateQueries.push_back(this->evaluatePredicate(queries[i]));
+void Interpreter::buildQueries(const std::vector<Predicate>& queries) {
+    for (auto & querie : queries) {
+        evaluateQueries.push_back(this->evaluatePredicate(querie));
         //std::cout << evaluateQueries[i] << std::endl;
     }
 }
 //TODO test buildRules
-void Interpreter::buildRules(std::vector<Rule> rules) {
+void Interpreter::buildRules(const std::vector<Rule>& rules) {
     std::cout << "Rule Evaluation" << std::endl;
     bool somethingChanged = true;
     while (somethingChanged) {
         somethingChanged = false;
-        for (unsigned int ruleIndex = 0; ruleIndex < rules.size(); ruleIndex++) {
+        for (auto & rule : rules) {
             //evaluate the predicates on the right-hand side of the rule
             evaluateRules.clear();
-            for (int j = 0; j < rules.at(ruleIndex).getLength(); j++) {
-                evaluateRules.push_back(this->evaluatePredicate(*rules.at(ruleIndex).getRuleAt(j)));
+            for (int j = 0; j < rule.getLength(); j++) {
+                evaluateRules.push_back(this->evaluatePredicate(*rule.getRuleAt(j)));
             }
             std::string output;
-            output += rules[ruleIndex].getHead()->toString() + " :- ";
-            for (int j = 0; j < rules[ruleIndex].getLength(); j++) {
-                output += rules[ruleIndex].getRuleAt(j)->toString() + ",";
+            output += rule.getHead()->toString() + " :- ";
+            for (int j = 0; j < rule.getLength(); j++) {
+                output += rule.getRuleAt(j)->toString() + ",";
             }
             output = output.substr(0, output.length() - 1);
             output += ".\n";
@@ -60,7 +60,7 @@ void Interpreter::buildRules(std::vector<Rule> rules) {
             //TODO fixed point algorithm
             //join the relations that result
             auto joinedRelations = new Relation();
-            //idk if I need to do this but I defined joinedRelations with at least one actual relation explicitly
+            //idk if I need to do this, but I defined joinedRelations with at least one actual relation explicitly
             joinedRelations->setName(evaluateRules.at(0)->getName());
             joinedRelations->setHeader(evaluateRules.at(0)->getHeader());
             joinedRelations->setTuples(evaluateRules.at(0)->getTuples());
@@ -71,7 +71,7 @@ void Interpreter::buildRules(std::vector<Rule> rules) {
             //project the columns that appear in the head predicate
             std::vector<int> projectIndex;
             Header relationHead = joinedRelations->getHeader();
-            Predicate *headPred = rules.at(ruleIndex).getHead();
+            Predicate *headPred = rule.getHead();
             for (int j = 0; j < headPred->getLength(); j++) {
                 for (int i = 0; i < relationHead.getLength(); i++) {
                     if (relationHead.getAttributeAt(i) == headPred->getPofIndex(j)) {
@@ -83,17 +83,17 @@ void Interpreter::buildRules(std::vector<Rule> rules) {
             joinedRelations = joinedRelations->project(projectIndex);
 
             //rename the relations to make it union-compatible (at least make sure the indices are matched up)
-            std::string searchKey = rules.at(ruleIndex).getHead()->getName();
+            std::string searchKey = rule.getHead()->getName();
             Relation *namingScheme = database.checkMap()[searchKey];
             Header renameHeader = namingScheme->getHeader();
             std::vector<std::string> renameAttributes = renameHeader.getAttributes();
             joinedRelations = joinedRelations->rename(renameAttributes);
 
             //union with the relation in the database
-            bool lastOneChanged = false;
+            bool lastOneChanged;
             std::cout << output;
             lastOneChanged = namingScheme->unionRelations(joinedRelations);
-            if (lastOneChanged == true)
+            if (lastOneChanged)
                 somethingChanged = true;
             if (lastOneChanged)
                 //output += joinedRelations->toString();
@@ -194,7 +194,7 @@ std::string Interpreter::toString() {
             std::set<Tuple> printTuples = eachQuery->getTuples();
             //I'm not sure this check is necessary, but it's still there
             if (!printTuples.empty()) {
-                for (Tuple searchTuple: printTuples) {
+                for (const Tuple& searchTuple: printTuples) {
                     output += "  ";
                     std::vector<std::string> preventDuplicates;
                     int countDup = 0;
@@ -202,13 +202,13 @@ std::string Interpreter::toString() {
                         //check each tuple in the query I'm looking at for a variable
                         if (searchHeader.getAttributeAt(j).substr(0, 1) != "'") {
                             isVarParam = true;
-                            //make sure you're not printing a duplicate. This should probably be in the select algorithm but it's here haha
+                            //make sure you're not printing a duplicate. This should probably be in the select algorithm, but it's here haha
                             preventDuplicates.push_back(searchHeader.getAttributeAt(j));
-                            for (unsigned int k = 0; k < preventDuplicates.size(); k++) {
-                                if (preventDuplicates[k] == searchHeader.getAttributeAt(j))
+                            for (auto & preventDuplicate : preventDuplicates) {
+                                if (preventDuplicate == searchHeader.getAttributeAt(j))
                                     countDup++;
                             }
-                            //if there's not duplicate and it's not a constant, print the tuple
+                            //if there's not a duplicate, and it's not a constant, print the tuple
                             if (countDup == 1)
                                 output += searchHeader.getAttributeAt(j) + "=" + searchTuple.getValueAt(j) + ", ";
                         }
