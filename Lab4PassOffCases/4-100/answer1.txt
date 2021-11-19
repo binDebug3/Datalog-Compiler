@@ -1,0 +1,23 @@
+Rule Evaluation
+G(b,a) :- H(b,a),F(b,a).
+F(a,b) :- G(a,b),H(a,b).
+  A='2', B='3'
+H(a,b) :- F(a,b),G(a,b).
+G(b,a) :- H(b,a),F(b,a).
+F(a,b) :- G(a,b),H(a,b).
+H(a,b) :- F(a,b),G(a,b).
+
+Schemes populated after 2 passes through the Rules.
+
+Query Evaluation
+F(a,b)? Yes(2)
+  a='1', b='2'
+  a='2', b='3'
+G(a,b)? Yes(1)
+  a='2', b='3'
+H(a,b)? Yes(2)
+  a='2', b='3'
+  a='3', b='2'
+F('2',b)? Yes(1)
+  b='3'
+G(a,'2')? No

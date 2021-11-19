@@ -1,0 +1,24 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+   F(A,B)
+   G(A,B)
+   H(A,B)
+ 
+Facts:
+   F('1','2').
+   G('2','3').
+   H('3','2').
+   H('2','3').
+ 
+Rules:
+   G(b,a):-H(b,a),F(b,a).
+   F(a,b):-G(a,b),H(a,b).
+   H(a,b):-F(a,b),G(a,b).
+ 
+Queries:
+   F(a,b)?
+   G(a,b)?
+   H(a,b)?
+   F('2',b)?
+   G(a,'2')?
