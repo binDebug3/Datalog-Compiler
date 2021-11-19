@@ -45,12 +45,11 @@ int main(int argc, char** argv) {
     Parser* parser = new Parser();
     try {
         parser->parseDatalogProgram(lexer->sendTokens());
-        //std::cout << parser->toString();
     }
     catch (std::string E) {
         cout << "Failure!" << std::endl << E;
     }
-    //std::cout << std::endl << "Starting Project 3:" << std::endl;
+    //evaluate
     Interpreter* interpreter = new Interpreter(parser->getDatalog());
 
     std::cout << interpreter->toString();

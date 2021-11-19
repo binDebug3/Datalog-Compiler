@@ -13,7 +13,6 @@ public:
     std::vector<std::string> getAttributes() const;
     std::string getAttributeAt(unsigned int index);
     unsigned int getLength();
-
 };
 
 #endif //HEADER_H

@@ -33,7 +33,6 @@ void Interpreter::buildFacts(std::vector<Predicate> facts) {
 void Interpreter::buildQueries(const std::vector<Predicate>& queries) {
     for (auto & querie : queries) {
         evaluateQueries.push_back(this->evaluatePredicate(querie));
-        //std::cout << evaluateQueries[i] << std::endl;
     }
 }
 //TODO test buildRules
@@ -55,12 +54,11 @@ void Interpreter::buildRules(const std::vector<Rule>& rules) {
             }
             output = output.substr(0, output.length() - 1);
             output += ".\n";
-            //std::cout << output;
 
             //TODO fixed point algorithm
             //join the relations that result
             auto joinedRelations = new Relation();
-            //idk if I need to do this, but I defined joinedRelations with at least one actual relation explicitly
+            //joinedRelations with at least one actual relation explicitly
             joinedRelations->setName(evaluateRules.at(0)->getName());
             joinedRelations->setHeader(evaluateRules.at(0)->getHeader());
             joinedRelations->setTuples(evaluateRules.at(0)->getTuples());
@@ -79,7 +77,6 @@ void Interpreter::buildRules(const std::vector<Rule>& rules) {
                     }
                 }
             }
-            //TODO figure out how to prevent project from wrecking initial tuples
             joinedRelations = joinedRelations->project(projectIndex);
 
             //rename the relations to make it union-compatible (at least make sure the indices are matched up)
@@ -95,9 +92,6 @@ void Interpreter::buildRules(const std::vector<Rule>& rules) {
             lastOneChanged = namingScheme->unionRelations(joinedRelations);
             if (lastOneChanged)
                 somethingChanged = true;
-            if (lastOneChanged)
-                //output += joinedRelations->toString();
-            //TODO don't forget about numPasses
             if (numPasses > 100)
                 somethingChanged = false;
         }
@@ -192,7 +186,6 @@ std::string Interpreter::toString() {
             bool isVarParam = false;
             Header searchHeader = eachQuery->getHeader();
             std::set<Tuple> printTuples = eachQuery->getTuples();
-            //I'm not sure this check is necessary, but it's still there
             if (!printTuples.empty()) {
                 for (const Tuple& searchTuple: printTuples) {
                     output += "  ";
