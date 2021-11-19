@@ -24,7 +24,7 @@ void Interpreter::buildSchemes(std::vector<Predicate> inputSchemes) {
 void Interpreter::buildFacts(std::vector<Predicate> facts) {
     for (auto & fact : facts) {
         Tuple createTuple;
-        for (int j=0; j<fact.getParameters().size(); j++) {
+        for (unsigned int j=0; j<fact.getParameters().size(); j++) {
             createTuple.addValue(fact.getPofIndex(j));
         }
         database.addDatabaseTuple(fact.getName(), createTuple);
@@ -44,12 +44,12 @@ void Interpreter::buildRules(const std::vector<Rule>& rules) {
         for (auto & rule : rules) {
             //evaluate the predicates on the right-hand side of the rule
             evaluateRules.clear();
-            for (int j = 0; j < rule.getLength(); j++) {
+            for (unsigned int j = 0; j < rule.getLength(); j++) {
                 evaluateRules.push_back(this->evaluatePredicate(*rule.getRuleAt(j)));
             }
             std::string output;
             output += rule.getHead()->toString() + " :- ";
-            for (int j = 0; j < rule.getLength(); j++) {
+            for (unsigned int j = 0; j < rule.getLength(); j++) {
                 output += rule.getRuleAt(j)->toString() + ",";
             }
             output = output.substr(0, output.length() - 1);
@@ -70,8 +70,8 @@ void Interpreter::buildRules(const std::vector<Rule>& rules) {
             std::vector<int> projectIndex;
             Header relationHead = joinedRelations->getHeader();
             Predicate *headPred = rule.getHead();
-            for (int j = 0; j < headPred->getLength(); j++) {
-                for (int i = 0; i < relationHead.getLength(); i++) {
+            for (unsigned int j = 0; j < headPred->getLength(); j++) {
+                for (unsigned int i = 0; i < relationHead.getLength(); i++) {
                     if (relationHead.getAttributeAt(i) == headPred->getPofIndex(j)) {
                         projectIndex.push_back(i);
                     }
@@ -134,10 +134,10 @@ Relation* Interpreter::evaluatePredicate(Predicate predicate) {
         }
         //if you find two identical variables
         if (select2) {
-            unsigned int index1 = -1, index2 = -1;
+            unsigned int index1 = 987657, index2 = 987657;
             for (unsigned int ind = 0; ind < yaFound.size(); ind++) {
                 if (yaFound[ind] == duplicateFoundAt) {
-                    if (index1 == -1)
+                    if (index1 == 987657)
                         index1 = ind;
                     else
                         index2 = ind;
@@ -191,7 +191,7 @@ std::string Interpreter::toString() {
                     output += "  ";
                     std::vector<std::string> preventDuplicates;
                     int countDup = 0;
-                    for (int j = 0; j < searchHeader.getLength(); j++) {
+                    for (unsigned int j = 0; j < searchHeader.getLength(); j++) {
                         //check each tuple in the query I'm looking at for a variable
                         if (searchHeader.getAttributeAt(j).substr(0, 1) != "'") {
                             isVarParam = true;

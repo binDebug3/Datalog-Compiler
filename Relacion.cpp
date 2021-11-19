@@ -62,7 +62,7 @@ Relation* Relation::select(unsigned int index, unsigned int otherIndex) {
     std::vector<int> yaIndex;
     std::vector<std::string> yaFound;
     bool found;
-    for(int i=0; i<header.getLength(); i++) {
+    for(unsigned int i=0; i<header.getLength(); i++) {
         for (auto & j : yaFound) {
             if (j == header.getAttributeAt(i))
                 found = true;
@@ -94,6 +94,7 @@ Relation* Relation::project(std::vector<int> indices) {
         createTuples.push_back(tempTuple);
         for (unsigned int keepIndex=0; keepIndex < indices.size(); keepIndex++) {
             for (unsigned int attributeIndex=0; attributeIndex < iterTup->getLength(); attributeIndex++) {
+                //TODO signed vs unsigned comparison
                 if (attributeIndex == indices[keepIndex]) {
                     createTuples.at(tupleIndex).addValue(iterTup->getValueAt(attributeIndex));
                 }
@@ -159,7 +160,7 @@ Header Relation::combineHeaders(int decision, Header headerWith) {
     else if (decision == 3){ //natural join
         for (unsigned int i = 0; i < headerWith.getLength(); i++) {
             insertAtt = false;
-            for (int j : sendSecondHeader) {
+            for (unsigned int j : sendSecondHeader) {
                 if (i == j)
                     insertAtt = true;
             }
@@ -171,7 +172,7 @@ Header Relation::combineHeaders(int decision, Header headerWith) {
     return newHeader;
 }
 std::set<Tuple> Relation::intersect(const std::set<Tuple>& tuplesWith) {
-    int addTupleCount;
+    unsigned int addTupleCount;
     std::set<Tuple> newTuples;
     auto iterThis = this->tuples.begin();
     auto iterWith = tuplesWith.begin();
@@ -257,7 +258,7 @@ Tuple Relation::combineTuples(const Tuple& tupleThis, const Tuple& tupleWith) {
         }
         for (unsigned int a = 0; a < tupleWithIndex.size(); a++) {
             bool toRemove = true;
-            for (int b : sendSecondHeader) {
+            for (unsigned int b : sendSecondHeader) {
                 if (a == b)
                     toRemove = false;
             }

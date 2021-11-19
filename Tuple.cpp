@@ -24,7 +24,7 @@ unsigned int Tuple::getLength() const {
 std::string Tuple::toString(Header header) const {
     std::string output;
     output += "  ";
-    for (int i=0; i<header.getLength(); i++) {
+    for (unsigned int i=0; i<header.getLength(); i++) {
         output += header.getAttributeAt(i) + "=" + values.at(i) + ", ";
     }
     output = output.substr(0, output.length()-2);
