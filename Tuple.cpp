@@ -21,6 +21,9 @@ std::vector<std::string> Tuple::getValues() const {
 int Tuple::getLength() const {
     return values.size();
 }
+unsigned int Tuple::getLength(int i) const {
+    return values.size();
+}
 std::string Tuple::toString(Header header) const {
     std::string output;
     output += "  ";

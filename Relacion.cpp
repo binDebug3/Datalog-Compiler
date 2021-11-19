@@ -172,7 +172,7 @@ Header Relation::combineHeaders(int decision, Header headerWith) {
     return newHeader;
 }
 std::set<Tuple> Relation::intersect(const std::set<Tuple>& tuplesWith) {
-    unsigned int addTupleCount;
+    int addTupleCount;
     std::set<Tuple> newTuples;
     auto iterThis = this->tuples.begin();
     auto iterWith = tuplesWith.begin();
@@ -237,7 +237,7 @@ Tuple Relation::combineTuples(const Tuple& tupleThis, const Tuple& tupleWith) {
     for (unsigned int i = 0; i < confirmFirst.size(); i++)
         if (tupleThis.getValueAt(confirmFirst.at(i)) != tupleWith.getValueAt(confirmSecond.at(i)))
             confirmsNotEqual = true;
-    if (sendFirstHeader.size() != tupleThis.getLength())
+    if (sendFirstHeader.size() != tupleThis.getLength(1))
         confirmsNotEqual = true;
     if (confirmsNotEqual) {
         firstMatches = true;

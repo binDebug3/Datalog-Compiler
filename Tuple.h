@@ -20,6 +20,7 @@ public:
     std::string getValueAt(unsigned int index) const;
     std::vector<std::string> getValues() const;
     int getLength() const;
+    unsigned int getLength(int i) const;
     std::string toString(Header header) const;
 };
 
