@@ -93,7 +93,7 @@ Relation* Relation::project(std::vector<int> indices) {
         Tuple tempTuple;
         createTuples.push_back(tempTuple);
         for (unsigned int keepIndex=0; keepIndex < indices.size(); keepIndex++) {
-            for (unsigned int attributeIndex=0; attributeIndex < iterTup->getLength(); attributeIndex++) {
+            for (int attributeIndex=0; attributeIndex < iterTup->getLength(); attributeIndex++) {
                 //TODO signed vs unsigned comparison
                 if (attributeIndex == indices[keepIndex]) {
                     createTuples.at(tupleIndex).addValue(iterTup->getValueAt(attributeIndex));
@@ -180,8 +180,8 @@ std::set<Tuple> Relation::intersect(const std::set<Tuple>& tuplesWith) {
         iterWith = tuplesWith.begin();
         for (unsigned int rowJ=0; rowJ < tuplesWith.size(); rowJ++) {
             addTupleCount = 0;
-            for (unsigned int colT=0; colT < this->tuples.begin()->getLength(); colT++) {
-                for (unsigned int colJ=0; colJ < tuplesWith.begin()->getLength(); colJ++) {
+            for (int colT=0; colT < this->tuples.begin()->getLength(); colT++) {
+                for (int colJ=0; colJ < tuplesWith.begin()->getLength(); colJ++) {
                     if (iterThis->getValueAt(colT) == iterWith->getValueAt(colJ))
                         addTupleCount++;
                 }
@@ -204,7 +204,7 @@ std::set<Tuple> Relation::crossProduct(const std::set<Tuple>& tuplesWith) {
         iterWith = tuplesWith.begin();
         for (unsigned int rowJ = 0; rowJ < tuplesWith.size(); rowJ++) {
             std::vector<std::string> newValues = iterThis->getValues();
-            for (unsigned int col = 0; col < iterWith->getLength(); col++) {
+            for (int col = 0; col < iterWith->getLength(); col++) {
                 newValues.push_back(iterWith->getValueAt(col));
             }
             Tuple tempTuple;
@@ -222,8 +222,8 @@ Tuple Relation::combineTuples(const Tuple& tupleThis, const Tuple& tupleWith) {
     Tuple combinedTuple;
     std::vector<std::string> combinedValues;
     //get a list of where the attributes match
-    for (unsigned int j = 0; j < tupleWith.getLength(); j++) {
-        for (unsigned int i = 0; i < tupleThis.getLength(); i++) {
+    for (int j = 0; j < tupleWith.getLength(); j++) {
+        for (int i = 0; i < tupleThis.getLength(); i++) {
             if (tupleThis.getValueAt(i) == tupleWith.getValueAt(j)) {
                 confirmFirst.push_back(i);
                 confirmSecond.push_back(j);
@@ -253,7 +253,7 @@ Tuple Relation::combineTuples(const Tuple& tupleThis, const Tuple& tupleWith) {
     if (firstMatches && secondMatches) {
         std::vector<int> tupleWithIndex;
         std::vector<unsigned int> toAddIndex;
-        for (unsigned int a=0; a < tupleWith.getLength(); a++) {
+        for (int a=0; a < tupleWith.getLength(); a++) {
             tupleWithIndex.push_back(a);
         }
         for (unsigned int a = 0; a < tupleWithIndex.size(); a++) {
@@ -266,7 +266,7 @@ Tuple Relation::combineTuples(const Tuple& tupleThis, const Tuple& tupleWith) {
                 toAddIndex.push_back(a);
         }
         //build new tuple
-        for (unsigned int i = 0; i < tupleThis.getLength(); i++) {
+        for (int i = 0; i < tupleThis.getLength(); i++) {
             combinedValues.push_back(tupleThis.getValueAt(i));
         }
         for (unsigned int i : toAddIndex) {

@@ -18,7 +18,7 @@ std::string Tuple::getValueAt(unsigned int index) const {
 std::vector<std::string> Tuple::getValues() const {
     return values;
 }
-unsigned int Tuple::getLength() const {
+int Tuple::getLength() const {
     return values.size();
 }
 std::string Tuple::toString(Header header) const {

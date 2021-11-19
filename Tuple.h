@@ -19,7 +19,7 @@ public:
     void setValueAt(int index, std::string value);
     std::string getValueAt(unsigned int index) const;
     std::vector<std::string> getValues() const;
-    unsigned int getLength() const;
+    int getLength() const;
     std::string toString(Header header) const;
 };
 
