@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "Header.h"
 
 class Tuple {
 private:
@@ -14,11 +15,13 @@ public:
     Tuple();
 
     void addValue(std::string value);
+    void removeValue(int index);
     void setValues(std::vector<std::string> values);
     void setValueAt(int index, std::string value);
     std::string getValueAt(int index) const;
     std::vector<std::string> getValues() const;
     int getLength() const;
+    std::string toString(Header header) const;
 };
 
 #endif //TUPLE_H

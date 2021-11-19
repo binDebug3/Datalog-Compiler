@@ -1,7 +1,4 @@
 #include "Database.h"
-#include "Tuple.h"
-#include <map>
-#include <iostream>
 
 Database::Database() {}
 Database::~Database() {

@@ -69,7 +69,6 @@ CMakeFiles/Project1_Starter_Code.dir/Interpreter.cpp.o: ../Interpreter.h
 CMakeFiles/Project1_Starter_Code.dir/Interpreter.cpp.o: ../Parameter.h
 CMakeFiles/Project1_Starter_Code.dir/Interpreter.cpp.o: ../Predicate.h
 CMakeFiles/Project1_Starter_Code.dir/Interpreter.cpp.o: ../Relacion.h
-CMakeFiles/Project1_Starter_Code.dir/Interpreter.cpp.o: ../Relation.h
 CMakeFiles/Project1_Starter_Code.dir/Interpreter.cpp.o: ../Rule.h
 CMakeFiles/Project1_Starter_Code.dir/Interpreter.cpp.o: ../Token.h
 CMakeFiles/Project1_Starter_Code.dir/Interpreter.cpp.o: ../Tuple.h
@@ -187,7 +186,6 @@ CMakeFiles/Project1_Starter_Code.dir/main.cpp.o: ../Parameter.h
 CMakeFiles/Project1_Starter_Code.dir/main.cpp.o: ../Parser.h
 CMakeFiles/Project1_Starter_Code.dir/main.cpp.o: ../Predicate.h
 CMakeFiles/Project1_Starter_Code.dir/main.cpp.o: ../Relacion.h
-CMakeFiles/Project1_Starter_Code.dir/main.cpp.o: ../Relation.h
 CMakeFiles/Project1_Starter_Code.dir/main.cpp.o: ../Rule.h
 CMakeFiles/Project1_Starter_Code.dir/main.cpp.o: ../Token.h
 CMakeFiles/Project1_Starter_Code.dir/main.cpp.o: ../Tuple.h

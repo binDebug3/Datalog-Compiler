@@ -1,7 +1,4 @@
 #include "Interpreter.h"
-#include "Tuple.h"
-#include "Parameter.h"
-#include <map>
 #include <iostream>
 
 Interpreter::Interpreter(const DatalogProgram& datalog) {
@@ -10,13 +7,12 @@ Interpreter::Interpreter(const DatalogProgram& datalog) {
     buildFacts(datalog.getFacts());
     buildRules(datalog.getRules());
     buildQueries(datalog.getQueries());
-    //std:: cout << database.toString() << std::endl << std::endl << "Start Project 3: " << std::endl;
 }
-Interpreter::~Interpreter() {}
+Interpreter::~Interpreter() = default;
 
 void Interpreter::buildSchemes(std::vector<Predicate> inputSchemes) {
     for (unsigned int i=0; i<inputSchemes.size(); i++) {
-        Relation* scheme = new Relation();
+        auto scheme = new Relation();
         std::string keyName = inputSchemes[i].getName();
         scheme->setName(keyName);
         Header header;
@@ -28,7 +24,7 @@ void Interpreter::buildSchemes(std::vector<Predicate> inputSchemes) {
 void Interpreter::buildFacts(std::vector<Predicate> facts) {
     for (unsigned int i=0; i<facts.size(); i++) {
         Tuple createTuple;
-        for (unsigned int j=0; j<facts[i].getParameters().size(); j++) {
+        for (int j=0; j<facts[i].getParameters().size(); j++) {
             createTuple.addValue(facts[i].getPofIndex(j));
         }
         database.addDatabaseTuple(facts[i].getName(), createTuple);
@@ -42,44 +38,70 @@ void Interpreter::buildQueries(std::vector<Predicate> queries) {
 }
 //TODO test buildRules
 void Interpreter::buildRules(std::vector<Rule> rules) {
-    for (unsigned int i = 0; i < rules.size(); i++) {
-        //evaluate the predicates on the right-hand side of the rule
-        for (unsigned int j = 0; j < rules.at(i).getLength(); j++) {
-            evaluateRules.push_back(this->evaluatePredicate(*rules.at(i).getRuleAt(j)));
-        }
-        //TODO fixed point algorithm
-        //join the relations that result
-        Relation *joinedRelations = new Relation();
-        //idk if I need to do this but I defined joinedRelations with at least one actual relation explicitly
-        joinedRelations->setName(evaluateRules.at(0)->getName());
-        joinedRelations->setHeader(evaluateRules.at(0)->getHeader());
-        joinedRelations->setTuples(evaluateRules.at(0)->getTuples());
-        for (unsigned int i = 1; i < evaluateRules.size(); i++) {
-            joinedRelations->join(evaluateRules.at(i));
-        }
+    std::cout << "Rule Evaluation" << std::endl;
+    bool somethingChanged = true;
+    while (somethingChanged) {
+        somethingChanged = false;
+        for (unsigned int ruleIndex = 0; ruleIndex < rules.size(); ruleIndex++) {
+            //evaluate the predicates on the right-hand side of the rule
+            evaluateRules.clear();
+            for (int j = 0; j < rules.at(ruleIndex).getLength(); j++) {
+                evaluateRules.push_back(this->evaluatePredicate(*rules.at(ruleIndex).getRuleAt(j)));
+            }
+            std::string output;
+            output += rules[ruleIndex].getHead()->toString() + " :- ";
+            for (int j = 0; j < rules[ruleIndex].getLength(); j++) {
+                output += rules[ruleIndex].getRuleAt(j)->toString() + ",";
+            }
+            output = output.substr(0, output.length() - 1);
+            output += ".\n";
+            //std::cout << output;
 
-        //project the columns that appear in the head predicate
-        std::vector<int> projectIndex;
-        Header relationHead = joinedRelations->getHeader();
-        Predicate *headPred = rules.at(i).getHead();
-        for (unsigned int i = 1; i < relationHead.getLength(); i++) {
-            for (unsigned int j = 1; j < headPred->getLength(); j++) {
-                if (relationHead.getAttributeAt(i) == headPred->getPofIndex(j)) {
-                    projectIndex.push_back(i);
+            //TODO fixed point algorithm
+            //join the relations that result
+            auto joinedRelations = new Relation();
+            //idk if I need to do this but I defined joinedRelations with at least one actual relation explicitly
+            joinedRelations->setName(evaluateRules.at(0)->getName());
+            joinedRelations->setHeader(evaluateRules.at(0)->getHeader());
+            joinedRelations->setTuples(evaluateRules.at(0)->getTuples());
+            for (unsigned int i = 1; i < evaluateRules.size(); i++) {
+                joinedRelations = joinedRelations->join(evaluateRules.at(i));
+            }
+
+            //project the columns that appear in the head predicate
+            std::vector<int> projectIndex;
+            Header relationHead = joinedRelations->getHeader();
+            Predicate *headPred = rules.at(ruleIndex).getHead();
+            for (int j = 0; j < headPred->getLength(); j++) {
+                for (int i = 0; i < relationHead.getLength(); i++) {
+                    if (relationHead.getAttributeAt(i) == headPred->getPofIndex(j)) {
+                        projectIndex.push_back(i);
+                    }
                 }
             }
+            //TODO figure out how to prevent project from wrecking initial tuples
+            joinedRelations = joinedRelations->project(projectIndex);
+
+            //rename the relations to make it union-compatible (at least make sure the indices are matched up)
+            std::string searchKey = rules.at(ruleIndex).getHead()->getName();
+            Relation *namingScheme = database.checkMap()[searchKey];
+            Header renameHeader = namingScheme->getHeader();
+            std::vector<std::string> renameAttributes = renameHeader.getAttributes();
+            joinedRelations = joinedRelations->rename(renameAttributes);
+
+            //union with the relation in the database
+            bool lastOneChanged = false;
+            std::cout << output;
+            lastOneChanged = namingScheme->unionRelations(joinedRelations);
+            if (lastOneChanged == true)
+                somethingChanged = true;
+            if (lastOneChanged)
+                //output += joinedRelations->toString();
+            //TODO don't forget about numPasses
+            if (numPasses > 100)
+                somethingChanged = false;
         }
-        joinedRelations->project(projectIndex);
-
-        //rename the relations to make it union-compatible (at least make sure the indices are matched up)
-        std::string searchKey = rules.at(i).getHead()->getName();
-        Relation* namingScheme = database.checkMap()[searchKey];
-        Header renameHeader = namingScheme->getHeader();
-        std::vector<std::string> renameAttributes = renameHeader.getAttributes();
-        joinedRelations->rename(renameAttributes);
-
-        //union with the relation in the database
-        namingScheme->unionRelations(joinedRelations);
+        numPasses++;
     }
 }
 
@@ -118,13 +140,13 @@ Relation* Interpreter::evaluatePredicate(Predicate predicate) {
         }
         //if you find two identical variables
         if (select2) {
-            int index1 = -1, index2 = -1;
-            for (unsigned int i = 0; i < yaFound.size(); i++) {
-                if (yaFound[i] == duplicateFoundAt) {
+            unsigned int index1 = -1, index2 = -1;
+            for (unsigned int ind = 0; ind < yaFound.size(); ind++) {
+                if (yaFound[ind] == duplicateFoundAt) {
                     if (index1 == -1)
-                        index1 = i;
+                        index1 = ind;
                     else
-                        index2 = i;
+                        index2 = ind;
                 }
             }
             createRelation = createRelation->select(index1, index2);
@@ -147,17 +169,22 @@ Relation* Interpreter::evaluatePredicate(Predicate predicate) {
     createRelation = createRelation->rename(renameString);
     return createRelation;
 }
-
+//TODO Rule Evaluation Output
 std::string Interpreter::toString() {
+    std::vector<Rule> printRules = datalog.getRules();
     std::vector<Predicate> printQueries = datalog.getQueries();
     std::string output;
+
+    output += "\nSchemes populated after " + std::to_string(numPasses) + " passes through the Rules.\n";
+
+    output += "\nQuery Evaluation\n";
     for (unsigned int i = 0; i < printQueries.size(); i++) {
         //for each query, print the header
         output += printQueries[i].toString() + "? ";
         Relation* eachQuery = evaluateQueries[i];
         std::vector<int> eachOutputIndex = outputIndex[eachQuery->getName()];
         //print success/the number of results
-        int numEval = eachQuery->getTuples().size();
+        unsigned int numEval = eachQuery->getTuples().size();
         if (numEval == 0)
             output += "No\n";
         else {
@@ -165,8 +192,8 @@ std::string Interpreter::toString() {
             bool isVarParam = false;
             Header searchHeader = eachQuery->getHeader();
             std::set<Tuple> printTuples = eachQuery->getTuples();
-            //I'm not sure this check is necessary but it's still there
-            if (printTuples.size() > 0) {
+            //I'm not sure this check is necessary, but it's still there
+            if (!printTuples.empty()) {
                 for (Tuple searchTuple: printTuples) {
                     output += "  ";
                     std::vector<std::string> preventDuplicates;

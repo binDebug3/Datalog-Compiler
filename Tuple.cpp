@@ -5,6 +5,13 @@ Tuple::Tuple() {}
 void Tuple::addValue(std::string value) {
     values.push_back(value);
 }
+void Tuple::removeValue(int index) {
+    auto iterIndex = values.begin();
+    for (int i = 0; i < index; i++) {
+        iterIndex++;
+    }
+    values.erase(iterIndex);
+}
 void Tuple::setValues(std::vector<std::string> values) {
     this->values = values;
 }
@@ -20,6 +27,16 @@ std::vector<std::string> Tuple::getValues() const {
 }
 int Tuple::getLength() const {
     return values.size();
+}
+std::string Tuple::toString(Header header) const {
+    std::string output;
+    output += "  ";
+    for (int i=0; i<header.getLength(); i++) {
+        output += header.getAttributeAt(i) + "=" + values.at(i) + ", ";
+    }
+    output = output.substr(0, output.length()-2);
+    output += "\n";
+    return output;
 }
 
 

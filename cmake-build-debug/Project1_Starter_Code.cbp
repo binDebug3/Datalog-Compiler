@@ -8,43 +8,43 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug"/>
+				<Option working_dir="/users/guest/d/dps2000/project4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug"/>
+				<Option working_dir="/users/guest/d/dps2000/project4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug"/>
+				<Option working_dir="/users/guest/d/dps2000/project4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Project1_Starter_Code">
-				<Option output="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Project1_Starter_Code" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug"/>
+				<Option output="/users/guest/d/dps2000/project4/cmake-build-debug/Project1_Starter_Code" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/users/guest/d/dps2000/project4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/."/>
+					<Add directory="/users/guest/d/dps2000/project4/."/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -54,20 +54,20 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project1_Starter_Code"/>
-					<CompileFile command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project1_Starter_Code"/>
+					<CompileFile command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Project1_Starter_Code/fast">
-				<Option output="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Project1_Starter_Code" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug"/>
+				<Option output="/users/guest/d/dps2000/project4/cmake-build-debug/Project1_Starter_Code" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/users/guest/d/dps2000/project4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/."/>
+					<Add directory="/users/guest/d/dps2000/project4/."/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -77,200 +77,200 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project1_Starter_Code/fast"/>
-					<CompileFile command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project1_Starter_Code/fast"/>
+					<CompileFile command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j20 -f &quot;/users/guest/d/dps2000/project4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/AddAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/AddAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/AddAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/AddAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Automaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Automaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/ColonAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/ColonAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/ColonAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/ColonAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/ColonDashAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/ColonDashAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/ColonDashAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/ColonDashAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/CommaAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/CommaAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/CommaAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/CommaAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/CommentAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/CommentAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/CommentAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/CommentAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Database.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Database.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Database.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Database.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/DatalogProgram.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/DatalogProgram.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/DatalogProgram.h">
+		<Unit filename="/users/guest/d/dps2000/project4/DatalogProgram.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/EOF_TypeAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/EOF_TypeAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/EOF_TypeAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/EOF_TypeAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/FactsAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/FactsAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/FactsAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/FactsAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Header.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Header.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Header.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Header.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/IDAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/IDAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/IDAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/IDAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Interpreter.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Interpreter.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Interpreter.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Interpreter.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Left_ParenAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Left_ParenAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Left_ParenAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Left_ParenAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Lexer.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Lexer.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Lexer.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Lexer.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/MultiplyAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/MultiplyAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/MultiplyAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/MultiplyAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Parameter.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Parameter.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Parameter.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Parameter.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Parser.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Parser.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Parser.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Parser.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/PeriodAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/PeriodAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/PeriodAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/PeriodAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Predicate.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Predicate.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Predicate.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Predicate.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Q_MarkAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Q_MarkAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Q_MarkAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Q_MarkAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/QueriesAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/QueriesAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/QueriesAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/QueriesAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Relacion.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Relacion.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Relacion.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Relacion.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Relation.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Relation.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Relation.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Relation.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Right_ParenAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Right_ParenAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Right_ParenAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Right_ParenAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Rule.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Rule.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Rule.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Rule.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/RulesAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/RulesAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/RulesAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/RulesAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/SchemesAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/SchemesAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/SchemesAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/SchemesAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/StringAutomaton.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/StringAutomaton.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/StringAutomaton.h">
+		<Unit filename="/users/guest/d/dps2000/project4/StringAutomaton.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Token.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Token.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Token.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Token.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Tuple.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/Tuple.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/Tuple.h">
+		<Unit filename="/users/guest/d/dps2000/project4/Tuple.h">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/main.cpp">
+		<Unit filename="/users/guest/d/dps2000/project4/main.cpp">
 			<Option target="Project1_Starter_Code"/>
 		</Unit>
-		<Unit filename="/users/guest/d/dps2000/tmp/tmp.Br24oWGyVo/CMakeLists.txt">
+		<Unit filename="/users/guest/d/dps2000/project4/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
