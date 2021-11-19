@@ -1,0 +1,165 @@
+Rule Evaluation
+before(C1,C2) :- cp(C2,C1).
+  cc1='CS100', cc2='CS101'
+  cc1='CS100', cc2='EE200'
+  cc1='CS101', cc2='CS120'
+  cc1='CS101', cc2='CS205'
+  cc1='CS120', cc2='CS121'
+  cc1='CS121', cc2='CS206'
+  cc1='CS205', cc2='CS206'
+  cc1='EE005', cc2='EE200'
+before(C1,C2) :- cp(C3,C1),before(C3,C2).
+  cc1='CS100', cc2='CS120'
+  cc1='CS100', cc2='CS205'
+  cc1='CS101', cc2='CS121'
+  cc1='CS101', cc2='CS206'
+  cc1='CS120', cc2='CS206'
+mwfCourses(C,R) :- cdh(C,'M',H),cr(C,R).
+  c='EE200', r='Hall'
+mwfCourses(C,R) :- cdh(C,'W',H),cr(C,R).
+mwfCourses(C,R) :- cdh(C,'F',H),cr(C,R).
+Schedule(N,C,R,D,H) :- snap(S,N,A,P),csg(C,S,G),cr(C,R),cdh(C,D,H).
+  n='Charley', c='CS101', r='Study', d='Tu', h='10AM'
+  n='Charley', c='EE200', r='Hall', d='F', h='10AM'
+  n='Charley', c='EE200', r='Hall', d='M', h='10AM'
+  n='Charley', c='EE200', r='Hall', d='W', h='1PM'
+  n='Lucy', c='CS101', r='Study', d='Tu', h='10AM'
+  n='Marcie', c='CS101', r='Study', d='Tu', h='10AM'
+  n='Marcie', c='EE200', r='Hall', d='F', h='10AM'
+  n='Marcie', c='EE200', r='Hall', d='M', h='10AM'
+  n='Marcie', c='EE200', r='Hall', d='W', h='1PM'
+  n='Patty', c='CS101', r='Study', d='Tu', h='10AM'
+  n='Patty', c='PH100', r='Lab', d='Tu', h='11AM'
+  n='Pig Pen', c='EE200', r='Hall', d='F', h='10AM'
+  n='Pig Pen', c='EE200', r='Hall', d='M', h='10AM'
+  n='Pig Pen', c='EE200', r='Hall', d='W', h='1PM'
+  n='Pig Pen', c='PH100', r='Lab', d='Tu', h='11AM'
+  n='Rerun', c='PH100', r='Lab', d='Tu', h='11AM'
+  n='Sally', c='CS101', r='Study', d='Tu', h='10AM'
+  n='Sally', c='EE200', r='Hall', d='F', h='10AM'
+  n='Sally', c='EE200', r='Hall', d='M', h='10AM'
+  n='Sally', c='EE200', r='Hall', d='W', h='1PM'
+  n='Snoopy', c='EE200', r='Hall', d='F', h='10AM'
+  n='Snoopy', c='EE200', r='Hall', d='M', h='10AM'
+  n='Snoopy', c='EE200', r='Hall', d='W', h='1PM'
+  n='Snoopy', c='PH100', r='Lab', d='Tu', h='11AM'
+  n='Woodstock', c='CS101', r='Study', d='Tu', h='10AM'
+  n='Woodstock', c='EE200', r='Hall', d='F', h='10AM'
+  n='Woodstock', c='EE200', r='Hall', d='M', h='10AM'
+  n='Woodstock', c='EE200', r='Hall', d='W', h='1PM'
+  n='Woodstock', c='PH100', r='Lab', d='Tu', h='11AM'
+Grades(N,C,G) :- snap(S,N,A,P),csg(C,S,G).
+  n='Charley', c='CS101', g='A'
+  n='Charley', c='EE200', g='C'
+  n='Lucy', c='CS101', g='A-'
+  n='Marcie', c='CS101', g='B'
+  n='Marcie', c='EE200', g='B'
+  n='Patty', c='CS101', g='B-'
+  n='Patty', c='PH100', g='C+'
+  n='Pig Pen', c='EE200', g='C'
+  n='Pig Pen', c='PH100', g='C+'
+  n='Rerun', c='PH100', g='C+'
+  n='Sally', c='CS101', g='B'
+  n='Sally', c='EE200', g='C'
+  n='Snoopy', c='EE200', g='B+'
+  n='Snoopy', c='PH100', g='C+'
+  n='Woodstock', c='CS101', g='A-'
+  n='Woodstock', c='EE200', g='B'
+  n='Woodstock', c='PH100', g='A'
+Roll(C,R,N,S,G) :- snap(S,N,A,P),csg(C,S,G),cr(C,R).
+  c='CS101', r='Study', n='Charley', s='1234', g='A'
+  c='CS101', r='Study', n='Lucy', s='1212', g='A-'
+  c='CS101', r='Study', n='Marcie', s='3333', g='B'
+  c='CS101', r='Study', n='Patty', s='5678', g='B-'
+  c='CS101', r='Study', n='Sally', s='4444', g='B'
+  c='CS101', r='Study', n='Woodstock', s='0000', g='A-'
+  c='EE200', r='Hall', n='Charley', s='1234', g='C'
+  c='EE200', r='Hall', n='Marcie', s='3333', g='B'
+  c='EE200', r='Hall', n='Pig Pen', s='7890', g='C'
+  c='EE200', r='Hall', n='Sally', s='4444', g='C'
+  c='EE200', r='Hall', n='Snoopy', s='9876', g='B+'
+  c='EE200', r='Hall', n='Woodstock', s='0000', g='B'
+  c='PH100', r='Lab', n='Patty', s='5678', g='C+'
+  c='PH100', r='Lab', n='Pig Pen', s='7890', g='C+'
+  c='PH100', r='Lab', n='Rerun', s='4321', g='C+'
+  c='PH100', r='Lab', n='Snoopy', s='9876', g='C+'
+  c='PH100', r='Lab', n='Woodstock', s='0000', g='A'
+before(C1,C2) :- cp(C2,C1).
+before(C1,C2) :- cp(C3,C1),before(C3,C2).
+  cc1='CS100', cc2='CS121'
+  cc1='CS100', cc2='CS206'
+mwfCourses(C,R) :- cdh(C,'M',H),cr(C,R).
+mwfCourses(C,R) :- cdh(C,'W',H),cr(C,R).
+mwfCourses(C,R) :- cdh(C,'F',H),cr(C,R).
+Schedule(N,C,R,D,H) :- snap(S,N,A,P),csg(C,S,G),cr(C,R),cdh(C,D,H).
+Grades(N,C,G) :- snap(S,N,A,P),csg(C,S,G).
+Roll(C,R,N,S,G) :- snap(S,N,A,P),csg(C,S,G),cr(C,R).
+before(C1,C2) :- cp(C2,C1).
+before(C1,C2) :- cp(C3,C1),before(C3,C2).
+mwfCourses(C,R) :- cdh(C,'M',H),cr(C,R).
+mwfCourses(C,R) :- cdh(C,'W',H),cr(C,R).
+mwfCourses(C,R) :- cdh(C,'F',H),cr(C,R).
+Schedule(N,C,R,D,H) :- snap(S,N,A,P),csg(C,S,G),cr(C,R),cdh(C,D,H).
+Grades(N,C,G) :- snap(S,N,A,P),csg(C,S,G).
+Roll(C,R,N,S,G) :- snap(S,N,A,P),csg(C,S,G),cr(C,R).
+
+Schemes populated after 3 passes through the Rules.
+
+Query Evaluation
+snap(S,N,A,P)? Yes(10)
+  S='0000', N='Woodstock', A='Treehouse', P='555-0000'
+  S='1111', N='Linus', A='Piano St', P='555-1111'
+  S='1212', N='Lucy', A='Home Ln', P='555-1212'
+  S='1234', N='Charley', A='Apple St', P='555-1234'
+  S='3333', N='Marcie', A='Banana St', P='555-3333'
+  S='4321', N='Rerun', A='Peach St', P='555-4321'
+  S='4444', N='Sally', A='Circle Dr', P='555-4444'
+  S='5678', N='Patty', A='Grape Blvd', P='555-5678'
+  S='7890', N='Pig Pen', A='Pear Ave', P='555-7890'
+  S='9876', N='Snoopy', A='Doghouse', P='555-9876'
+snap(Id,'Snoopy',Address,Phone)? Yes(1)
+  Id='9876', Address='Doghouse', Phone='555-9876'
+csg(Course,'33333',Grade)? No
+cp(Course,'CS100')? Yes(2)
+  Course='CS101'
+  Course='EE200'
+cdh('EE200',Day,Hour)? Yes(3)
+  Day='F', Hour='10AM'
+  Day='M', Hour='10AM'
+  Day='W', Hour='1PM'
+cr('CS101',Room)? Yes(1)
+  Room='Study'
+mwfCourses(Course,Room)? Yes(1)
+  Course='EE200', Room='Hall'
+Schedule('Snoopy',Course,Room,Day,Hour)? Yes(4)
+  Course='EE200', Room='Hall', Day='F', Hour='10AM'
+  Course='EE200', Room='Hall', Day='M', Hour='10AM'
+  Course='EE200', Room='Hall', Day='W', Hour='1PM'
+  Course='PH100', Room='Lab', Day='Tu', Hour='11AM'
+Grades('Snoopy',Course,Grade)? Yes(2)
+  Course='EE200', Grade='B+'
+  Course='PH100', Grade='C+'
+Grades('Woodstock',Course,Grade)? Yes(3)
+  Course='CS101', Grade='A-'
+  Course='EE200', Grade='B'
+  Course='PH100', Grade='A'
+Roll('CS101',Room,Name,Id,Grade)? Yes(6)
+  Room='Study', Name='Charley', Id='1234', Grade='A'
+  Room='Study', Name='Lucy', Id='1212', Grade='A-'
+  Room='Study', Name='Marcie', Id='3333', Grade='B'
+  Room='Study', Name='Patty', Id='5678', Grade='B-'
+  Room='Study', Name='Sally', Id='4444', Grade='B'
+  Room='Study', Name='Woodstock', Id='0000', Grade='A-'
+Roll('EE200',Room,Name,Id,Grade)? Yes(6)
+  Room='Hall', Name='Charley', Id='1234', Grade='C'
+  Room='Hall', Name='Marcie', Id='3333', Grade='B'
+  Room='Hall', Name='Pig Pen', Id='7890', Grade='C'
+  Room='Hall', Name='Sally', Id='4444', Grade='C'
+  Room='Hall', Name='Snoopy', Id='9876', Grade='B+'
+  Room='Hall', Name='Woodstock', Id='0000', Grade='B'
+Roll('PH100',Room,Name,Id,Grade)? Yes(5)
+  Room='Lab', Name='Patty', Id='5678', Grade='C+'
+  Room='Lab', Name='Pig Pen', Id='7890', Grade='C+'
+  Room='Lab', Name='Rerun', Id='4321', Grade='C+'
+  Room='Lab', Name='Snoopy', Id='9876', Grade='C+'
+  Room='Lab', Name='Woodstock', Id='0000', Grade='A'

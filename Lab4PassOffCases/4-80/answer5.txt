@@ -1,0 +1,42 @@
+Rule Evaluation
+DeaWoo(A,B,C,D,E) :- A(A),A(B),A(C),A(D),A(E).
+  a='a', b='a', c='a', d='a', e='a'
+DeaWoo(A,B,C,D,E) :- A(A),A(B),B(C),A(D),A(E).
+  a='a', b='a', c='b', d='a', e='a'
+DeaWoo(A,B,C,D,E) :- A(E),B(D),A(C),B(B),A(A).
+  a='a', b='b', c='a', d='b', e='a'
+DeaUoo(E,D,C,B,A) :- DeaWoo(A,B,C,D,E),A(B).
+  a='a', b='a', c='a', d='a', e='a'
+  a='a', b='a', c='b', d='a', e='a'
+  a='b', b='a', c='a', d='a', e='a'
+DeaVoo(E,D,C,B,A) :- DeaUoo(A,B,C,D,E),B(D).
+DeaWoo(A,B,C,D,E) :- A(A),A(B),A(C),A(D),A(E).
+DeaWoo(A,B,C,D,E) :- A(A),A(B),B(C),A(D),A(E).
+DeaWoo(A,B,C,D,E) :- A(E),B(D),A(C),B(B),A(A).
+DeaUoo(E,D,C,B,A) :- DeaWoo(A,B,C,D,E),A(B).
+DeaVoo(E,D,C,B,A) :- DeaUoo(A,B,C,D,E),B(D).
+
+Schemes populated after 2 passes through the Rules.
+
+Query Evaluation
+DeaUoo(A,B,C,D,E)? Yes(3)
+  A='a', B='a', C='a', D='a', E='a'
+  A='a', B='a', C='b', D='a', E='a'
+  A='b', B='a', C='a', D='a', E='a'
+DeaUoo(A,B,'a',D,E)? Yes(2)
+  A='a', B='a', D='a', E='a'
+  A='b', B='a', D='a', E='a'
+DeaVoo(A,B,'a',D,E)? No
+DeaUoo(A,B,'b',D,E)? Yes(1)
+  A='a', B='a', D='a', E='a'
+DeaWoo(A,B,'a',D,Applestrudle)? Yes(4)
+  A='a', B='a', D='a', Applestrudle='a'
+  A='a', B='a', D='a', Applestrudle='b'
+  A='a', B='b', D='a', Applestrudle='b'
+  A='a', B='b', D='b', Applestrudle='a'
+DeaWoo(A,B,'a',D,E)? Yes(4)
+  A='a', B='a', D='a', E='a'
+  A='a', B='a', D='a', E='b'
+  A='a', B='b', D='a', E='b'
+  A='a', B='b', D='b', E='a'
+DeaWoo('a','a','a','a','b')? Yes(1)

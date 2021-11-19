@@ -1,0 +1,19 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+
+permutations(A,B,C,D,E,F)
+
+Facts:
+
+permutations('a','b','c','d','e','f').
+
+Rules:
+
+permutations(b,a,c,d,e,f):-permutations(a,b,c,d,e,f).
+permutations(b,c,d,e,f,a):-permutations(a,b,c,d,e,f).
+
+Queries:
+
+permutations(a,b,c,d,e,f)?
+

@@ -1,0 +1,36 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+   a(x,y)
+   b(x,y)
+   c(x,y)
+   d(x,y)
+   e(x,y)
+   f(x,y)
+   g(x,y)
+   all(x,y)
+
+Facts:
+   a('1','1').
+   a('1','2').
+   a('1','3').
+   a('1','4').
+   a('2','2').
+   a('2','3').
+   a('2','4').
+   a('3','3').
+   a('3','4').
+   a('4','4').
+
+Rules:
+   b(X,Y):-a(X,Y).
+   c(X,Y):-b(X,Y).
+   d(X,Y):-c(X,Y).
+   e(X,Y):-d(X,Y).
+   f(X,Y):-e(X,Y).
+   g(X,Y):-f(X,Y).
+   all(X,Y):-a(X,Y),b(X,Y),c(X,Y),d(X,Y),e(X,Y),f(X,Y),g(X,Y).
+
+Queries:
+   g('1','3')?
+   all(A,B)?

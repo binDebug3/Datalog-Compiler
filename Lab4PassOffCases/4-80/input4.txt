@@ -1,0 +1,18 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+    snap(s,n,a,p)
+    NameHasID(n,s)
+
+Facts:
+    snap('12345','Snoopy','12 Apple','555-1234').
+    snap('67890','Van Pelt','34 Pear','555-5678').
+
+Rules:
+    NameHasID(N,S):-snap(S,N,A,P).
+
+Queries:
+    snap('67890','Van Pelt','34 Pear','555-5678')?
+    snap(S,N,A,P)?
+    NameHasID('Snoopy',Id)?
+    NameHasID(Name,'67890')?

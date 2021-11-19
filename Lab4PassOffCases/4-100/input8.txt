@@ -1,0 +1,33 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+
+combinations(A,B,C,D,E)
+be(B,E)
+ce(C,E)
+bcd(B,C,D)
+ade(A,D,E)
+chars(ALL)
+
+Facts:
+
+combinations('a','b','c','d','e').
+
+Rules:
+
+chars(a):-combinations(a,b,c,d,e).
+be(b,e):-chars(b),chars(e).
+ce(c,e):-chars(c),chars(e).
+bcd(b,c,d):-chars(b),chars(c),chars(d).
+ade(a,d,e):-chars(a),chars(d),chars(e).
+combinations(a,b,c,d,e):-be(b,e),ce(c,e),bcd(b,c,d),ade(a,d,e).
+combinations(b,c,d,e,a):-combinations(a,b,c,d,e).
+
+# chars(a):-combinations(a,b,c,d,e).
+# combinations(a,b,c,d,e):-chars(b),chars(e),chars(a),chars(d),chars(c).
+# combinations(b,c,d,e,a):-combinations(a,b,c,d,e).
+
+Queries:
+
+combinations(a,b,c,d,e)?
+

@@ -1,0 +1,17 @@
+Rule Evaluation
+NameHasID(N,S) :- snap(S,N,A,P).
+  n='Snoopy', s='12345'
+  n='Van Pelt', s='67890'
+NameHasID(N,S) :- snap(S,N,A,P).
+
+Schemes populated after 2 passes through the Rules.
+
+Query Evaluation
+snap('67890','Van Pelt','34 Pear','555-5678')? Yes(1)
+snap(S,N,A,P)? Yes(2)
+  S='12345', N='Snoopy', A='12 Apple', P='555-1234'
+  S='67890', N='Van Pelt', A='34 Pear', P='555-5678'
+NameHasID('Snoopy',Id)? Yes(1)
+  Id='12345'
+NameHasID(Name,'67890')? Yes(1)
+  Name='Van Pelt'

@@ -1,0 +1,24 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+   f(a,b)
+   g(c,d)
+   r(e,f)
+
+Facts:
+   f('1','2').
+   f('4','3').
+   g('3','2').
+   r('3','5').
+
+Rules:
+   r(E,F):-f(E,F).
+   r(X,Y):-g(X,R),f(Y,S).
+   g(C,D):-f(C,X),r(X,D).
+
+Queries:
+   g('4',B)?
+   r(E,'3')?
+   f(A,B)?
+   g(A,B)?
+   r(A,B)?

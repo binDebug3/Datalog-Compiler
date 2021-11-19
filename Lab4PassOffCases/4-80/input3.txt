@@ -1,0 +1,31 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING SUMMER 2021 SEMESTER
+Schemes:
+   A(a)
+   B(b)
+   DeaUoo(a,b,c,d,e)
+   DeaVoo(a,b,c,d,e)
+   DeaWoo(a,b,c,d,e)
+
+Facts:
+   A('a').
+   B('b').
+   DeaWoo('a','a','a','a','b').
+   DeaWoo('a','b','a','a','b').
+
+Rules: 
+   DeaWoo(A,B,C,D,E):-A(A),A(B),A(C),A(D),A(E).
+   DeaWoo(A,B,C,D,E):-A(A),A(B),B(C),A(D),A(E). 
+   DeaUoo(E,D,C,B,A):-DeaWoo(E,D,C,B,A),A(B). 
+   DeaVoo(E,D,C,B,A):-DeaUoo(E,D,C,B,A),B(D).
+
+Queries:
+   DeaUoo(A,B,C,D,E)? 
+   DeaUoo(A,B,'a',D,E)?
+   DeaVoo(A,B,C,D,E)?
+   DeaVoo(A,B,'a',D,E)?
+   DeaUoo(A,B,'b',D,E)?
+   DeaWoo(A,B,'a',D,Applestrudle)?
+   DeaWoo(A,B,'a',D,E)?
+   DeaWoo(A,B,C,D,E)?
+   DeaWoo('a','a','a','a','b')?

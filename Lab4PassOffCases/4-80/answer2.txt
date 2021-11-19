@@ -1,0 +1,45 @@
+Rule Evaluation
+r(E,F) :- f(E,F).
+  e='1', f='2'
+  e='4', f='3'
+r(X,Y) :- g(X,R),f(Y,S).
+  e='3', f='1'
+  e='3', f='4'
+g(C,D) :- f(C,X),r(X,D).
+  c='4', d='1'
+  c='4', d='4'
+  c='4', d='5'
+r(E,F) :- f(E,F).
+r(X,Y) :- g(X,R),f(Y,S).
+  e='4', f='1'
+  e='4', f='4'
+g(C,D) :- f(C,X),r(X,D).
+r(E,F) :- f(E,F).
+r(X,Y) :- g(X,R),f(Y,S).
+g(C,D) :- f(C,X),r(X,D).
+
+Schemes populated after 3 passes through the Rules.
+
+Query Evaluation
+g('4',B)? Yes(3)
+  B='1'
+  B='4'
+  B='5'
+r(E,'3')? Yes(1)
+  E='4'
+f(A,B)? Yes(2)
+  A='1', B='2'
+  A='4', B='3'
+g(A,B)? Yes(4)
+  A='3', B='2'
+  A='4', B='1'
+  A='4', B='4'
+  A='4', B='5'
+r(A,B)? Yes(7)
+  A='1', B='2'
+  A='3', B='1'
+  A='3', B='4'
+  A='3', B='5'
+  A='4', B='1'
+  A='4', B='3'
+  A='4', B='4'
