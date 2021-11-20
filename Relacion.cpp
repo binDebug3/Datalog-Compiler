@@ -132,6 +132,12 @@ int Relation::isJoinable(Header first, Header second) {
             }
         }
     }
+    for (int & firstIndice : firstIndices) {
+        sendFirstHeader.push_back(firstIndice);
+    }
+    for (int & secondIndice : secondIndices) {
+        sendSecondHeader.push_back(secondIndice);
+    }
     if (firstIndices.size() == first.getLength()) {
         return 1; //intersect
     }
@@ -139,12 +145,6 @@ int Relation::isJoinable(Header first, Header second) {
         return 2; //cross product
     }
     else {
-        for (int & firstIndice : firstIndices) {
-            sendFirstHeader.push_back(firstIndice);
-        }
-        for (int & secondIndice : secondIndices) {
-            sendSecondHeader.push_back(secondIndice);
-        }
         return 3;
     }
 }
@@ -180,11 +180,12 @@ std::set<Tuple> Relation::intersect(const std::set<Tuple>& tuplesWith) {
         iterWith = tuplesWith.begin();
         for (unsigned int rowJ=0; rowJ < tuplesWith.size(); rowJ++) {
             addTupleCount = 0;
-            for (int colT=0; colT < this->tuples.begin()->getLength(); colT++) {
-                for (int colJ=0; colJ < tuplesWith.begin()->getLength(); colJ++) {
-                    if (iterThis->getValueAt(colT) == iterWith->getValueAt(colJ))
-                        addTupleCount++;
-                }
+            for (unsigned int colT=0; colT < sendFirstHeader.size(); colT++) {
+                if (iterThis->getValueAt(sendFirstHeader[colT]) == iterWith->getValueAt(sendSecondHeader[colT]))
+                    addTupleCount++;
+                //for (int colJ=0; colJ < tuplesWith.begin()->getLength(); colJ++) {
+
+                //}
             }
             if (addTupleCount == tuples.begin()->getLength())
                 newTuples.insert(*iterThis);
