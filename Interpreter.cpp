@@ -244,7 +244,7 @@ std::vector<int> Interpreter::DFS(int node) {
     reverseGraph.markNode(node, true);
     std::set<int> edges = reverseGraph.getEdgesOfNode(node);
     auto iterEdges = edges.begin();
-    for (int i = 0; i < edges.size(); i++) {
+    for (unsigned int i = 0; i < edges.size(); i++) {
         if (!reverseGraph.checkVisited(*iterEdges)) {
             DFS(*iterEdges);
             //std::cout << std::to_string(node) << ": " << graph.printPostOrder();
@@ -259,7 +259,7 @@ std::set<int> Interpreter::DFS(int node, int countSCC) {
     graph.markNode(node, true);
     std::set<int> edges = graph.getEdgesOfNode(node);
     auto iterEdges = edges.begin();
-    for (int i = 0; i < edges.size(); i++) {
+    for (unsigned int i = 0; i < edges.size(); i++) {
         if (!graph.checkVisited(*iterEdges)) {
             DFS(*iterEdges, countSCC);
         }
@@ -270,7 +270,7 @@ std::set<int> Interpreter::DFS(int node, int countSCC) {
 }
 std::vector<int> Interpreter::dfsForest() {
     reverseGraph.resetVisits();
-    for (int i = 0; i < reverseGraph.getLength(); i++) {
+    for (unsigned int i = 0; i < reverseGraph.getLength(); i++) {
         if (!reverseGraph.checkVisited(i))
             DFS(i);
     }

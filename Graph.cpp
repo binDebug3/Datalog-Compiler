@@ -25,7 +25,7 @@ void Graph::markNode(int node, bool marked) {
     if (iterBool != nodesVisited.end())
         iterBool->second = marked;
 }
-int Graph::getLength() const {
+unsigned int Graph::getLength() const {
     return graphEdges.size();
 }
 int Graph::getNode(int index) {

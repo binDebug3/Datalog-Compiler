@@ -24,7 +24,7 @@ public:
     void pushBack(int order);
     void resetVisits();
 
-    int getLength() const;
+    unsigned int getLength() const;
     void pushBack(const std::vector <int>& smolPostOrder);
     std::vector<int> getPostOrder();
     std::string printPostOrder() const;
