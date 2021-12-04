@@ -42,13 +42,6 @@ std::set<int> Graph::getEdgesOfNode(int node) {
     }
     return iterGraph->second;
 }
-int Graph::getLengthOfEdges(int node) {
-    auto iterEdge = graphEdges.find(node);
-    if (iterEdge != graphEdges.end())
-        return iterEdge->second.size();
-    else
-        return 0;
-}
 void Graph::pushBack(int order) {
     postOrder.push_back(order);
 }
@@ -62,21 +55,18 @@ void Graph::resetVisits() {
     for (iterMark = nodesVisited.begin(); iterMark != nodesVisited.end(); iterMark++)
         iterMark->second = false;
 }
-void Graph::resetPostOrder() {
-    postOrder.clear();
-}
 std::vector<int> Graph::getPostOrder() {
     return postOrder;
 }
 std::string Graph::printPostOrder() const {
     std::string output;
-    for (unsigned int i = 0; i < postOrder.size(); i++) {
-        output += std::to_string(postOrder.at(i)) + ",";
+    for (int i : postOrder) {
+        output += std::to_string(i) + ",";
     }
     output = output.substr(0,output.size()-1);
     return output + "\n";
 }
-void Graph::insertSCC(std::set<int> newSCC) {
+void Graph::insertSCC(const std::set<int>& newSCC) {
     SCC.push_back(newSCC);
 }
 void Graph::deleteSCC() {
@@ -97,7 +87,7 @@ std::string Graph::printSCC() const {
         output += "SCC" + std::to_string(i) + ":";
         auto iterElem = SCC.at(i).begin();
         for (unsigned int j = 0; j < SCC.at(i).size(); j++) {
-            output += std::to_string(*iterElem) + ",";
+            output += "R" + std::to_string(*iterElem) + ",";
             iterElem++;
         }
         if (output.substr(output.size()-1,1) == ",")
@@ -106,6 +96,19 @@ std::string Graph::printSCC() const {
     }
     return output;
 }
+std::string Graph:: printComponent(int index) const {
+    std::string output;
+    auto iterElem = SCC.at(index).begin();
+    for (unsigned int j = 0; j < SCC.at(index).size(); j++) {
+        output += "R" + std::to_string(*iterElem) + ",";
+        iterElem++;
+    }
+    if (output.substr(output.size()-1,1) == ",")
+        output = output.substr(0, output.size()-1);
+    output += "\n";
+    return output;
+}
+
 
 
 std::string Graph::toString() const {

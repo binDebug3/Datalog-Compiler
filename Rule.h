@@ -11,6 +11,7 @@ private:
     std::vector<Predicate*> bodyPredicates;
 
 public:
+    Rule() = default;
     Rule(Predicate* newHeadPredicate, std::vector<Predicate*> bodyPredicates);
     ~Rule();
     unsigned int getLength() const;

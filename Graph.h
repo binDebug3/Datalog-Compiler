@@ -18,7 +18,6 @@ public:
     void insertEdge(int node, int edge);
     int getNode(int index);
     std::set<int> getEdgesOfNode(int node);
-    int getLengthOfEdges(int node);
 
     bool checkVisited(int node);
     void markNode(int node, bool marked);
@@ -28,15 +27,15 @@ public:
     int getLength() const;
     void pushBack(const std::vector <int>& smolPostOrder);
     std::vector<int> getPostOrder();
-    void resetPostOrder();
     std::string printPostOrder() const;
 
-    void insertSCC(std::set<int> newSCC);
+    void insertSCC(const std::set<int>& newSCC);
     void deleteSCC();
     void insertElement(int index, int elem);
     std::set<int> getSCC(int index);
     std::vector<std::set<int>> getAllSCC();
     std::string printSCC() const;
+    std::string printComponent(int index) const;
 
     std::string toString() const;
 };

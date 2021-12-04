@@ -36,67 +36,87 @@ void Interpreter::buildQueries(const std::vector<Predicate>& queries) {
     }
 }
 void Interpreter::buildRules(const std::vector<Rule>& rules) {
-    std::cout << "Rule Evaluation" << std::endl;
     std::vector<std::set<int>> strongCCs;
     strongCCs = optimizeRules(rules);
+    //std::cout << graph.printSCC();
+    std::cout << "Rule Evaluation" << std::endl;
+    std::string output;
+    unsigned int component = 0;
+    while (component < strongCCs.size()) {
+        bool somethingChanged = true;
+        numPasses = 0;
+        std::cout << "SCC: " << graph.printComponent(component);
+        while (somethingChanged) {
+            somethingChanged = false;
+            for (auto vertex = strongCCs.at(component).begin(); vertex != strongCCs.at(component).end(); vertex++) {
+                Rule rule = rules[*vertex];
+                //evaluate the predicates on the right-hand side of the rule
+                evaluateRules.clear();
+                for (unsigned int j = 0; j < rule.getLength(); j++) {
+                    evaluateRules.push_back(this->evaluatePredicate(*rule.getRuleAt(j)));
+                }
+                std::cout << rule.getHead()->toString() << " :- ";
+                output = "";
+                for (unsigned int j = 0; j < rule.getLength(); j++) {
+                    output += rule.getRuleAt(j)->toString() + ",";
+                }
+                output = output.substr(0, output.length() - 1);
+                std::cout << output << "." << std::endl;
 
-    bool somethingChanged = true;
-    while (somethingChanged) {
-        somethingChanged = false;
-        for (auto & rule : rules) {
-            //evaluate the predicates on the right-hand side of the rule
-            evaluateRules.clear();
-            for (unsigned int j = 0; j < rule.getLength(); j++) {
-                evaluateRules.push_back(this->evaluatePredicate(*rule.getRuleAt(j)));
-            }
-            std::string output;
-            output += rule.getHead()->toString() + " :- ";
-            for (unsigned int j = 0; j < rule.getLength(); j++) {
-                output += rule.getRuleAt(j)->toString() + ",";
-            }
-            output = output.substr(0, output.length() - 1);
-            output += ".\n";
+                //join the relations that result
+                auto joinedRelations = new Relation();
+                //joinedRelations with at least one actual relation explicitly
+                joinedRelations->setName(evaluateRules.at(0)->getName());
+                joinedRelations->setHeader(evaluateRules.at(0)->getHeader());
+                joinedRelations->setTuples(evaluateRules.at(0)->getTuples());
+                for (unsigned int i = 1; i < evaluateRules.size(); i++) {
+                    joinedRelations = joinedRelations->join(evaluateRules.at(i));
+                }
 
-            //join the relations that result
-            auto joinedRelations = new Relation();
-            //joinedRelations with at least one actual relation explicitly
-            joinedRelations->setName(evaluateRules.at(0)->getName());
-            joinedRelations->setHeader(evaluateRules.at(0)->getHeader());
-            joinedRelations->setTuples(evaluateRules.at(0)->getTuples());
-            for (unsigned int i = 1; i < evaluateRules.size(); i++) {
-                joinedRelations = joinedRelations->join(evaluateRules.at(i));
-            }
-
-            //project the columns that appear in the head predicate
-            std::vector<int> projectIndex;
-            Header relationHead = joinedRelations->getHeader();
-            Predicate *headPred = rule.getHead();
-            for (unsigned int j = 0; j < headPred->getLength(); j++) {
-                for (unsigned int i = 0; i < relationHead.getLength(); i++) {
-                    if (relationHead.getAttributeAt(i) == headPred->getPofIndex(j)) {
-                        projectIndex.push_back(i);
+                //project the columns that appear in the head predicate
+                std::vector<int> projectIndex;
+                Header relationHead = joinedRelations->getHeader();
+                Predicate *headPred = rule.getHead();
+                for (unsigned int j = 0; j < headPred->getLength(); j++) {
+                    for (unsigned int i = 0; i < relationHead.getLength(); i++) {
+                        if (relationHead.getAttributeAt(i) == headPred->getPofIndex(j)) {
+                            projectIndex.push_back(i);
+                        }
                     }
                 }
+                joinedRelations = joinedRelations->project(projectIndex);
+
+                //rename the relations to make it union-compatible (at least make sure the indices are matched up)
+                std::string searchKey = rule.getHead()->getName();
+                Relation *namingScheme = database.checkMap()[searchKey];
+                Header renameHeader = namingScheme->getHeader();
+                std::vector<std::string> renameAttributes = renameHeader.getAttributes();
+                joinedRelations = joinedRelations->rename(renameAttributes);
+
+                //union with the relation in the database
+                bool lastOneChanged;
+                //std::cout << output;
+                lastOneChanged = namingScheme->unionRelations(joinedRelations);
+                if (lastOneChanged)
+                    somethingChanged = true;
+                if (numPasses > 100)
+                    somethingChanged = false;
             }
-            joinedRelations = joinedRelations->project(projectIndex);
-
-            //rename the relations to make it union-compatible (at least make sure the indices are matched up)
-            std::string searchKey = rule.getHead()->getName();
-            Relation *namingScheme = database.checkMap()[searchKey];
-            Header renameHeader = namingScheme->getHeader();
-            std::vector<std::string> renameAttributes = renameHeader.getAttributes();
-            joinedRelations = joinedRelations->rename(renameAttributes);
-
-            //union with the relation in the database
-            bool lastOneChanged;
-            std::cout << output;
-            lastOneChanged = namingScheme->unionRelations(joinedRelations);
-            if (lastOneChanged)
-                somethingChanged = true;
-            if (numPasses > 100)
-                somethingChanged = false;
+            if (strongCCs.at(component).size() == 1) {
+                auto vert = strongCCs.at(component).begin();
+                Rule checkDepend = rules[*vert];
+                bool eachOneFails = true;
+                for (unsigned int eachPred = 0; eachPred < checkDepend.getLength(); eachPred++) {
+                    if (checkDepend.getHead()->getName() == checkDepend.getRuleAt(eachPred)->getName())
+                        eachOneFails = false;
+                }
+                if (eachOneFails)
+                    somethingChanged = false;
+            }
+            numPasses++;
         }
-        numPasses++;
+        std::cout << std::to_string(numPasses) << " passes: " << graph.printComponent(component);
+        component++;
     }
 }
 
@@ -171,14 +191,16 @@ std::vector<std::set<int>> Interpreter::optimizeRules(const std::vector<Rule>& r
     buildReverseGraph(rules);
     dfsForest();
     strongCCs = dfsForest(true);
+    std::cout << graph.toString();
+    return strongCCs;
 }
 void Interpreter::buildGraph(const std::vector<Rule>& rules) {
     for (unsigned int i = 0; i < rules.size(); i++) {
         std::set<int> edges;
         std::vector<Predicate *> preEdges = rules.at(i).getRules();
         //find any matching rules
-        for (unsigned int j = 0; j < preEdges.size(); j++) {
-            std::string edgeName = preEdges.at(j)->getName();
+        for (auto & preEdge : preEdges) {
+            std::string edgeName = preEdge->getName();
             for (unsigned int k = 0; k < rules.size(); k++)
                 if (rules.at(k).getHead()->getName() == edgeName)
                     edges.insert(k);
@@ -195,8 +217,8 @@ void Interpreter::buildReverseGraph(const std::vector<Rule>& rules) {
         for (unsigned int j = 0; j < edges.size(); j++) {
             std::set<int> reverseEdges;
             yaVisited = false;
-            for (unsigned int k = 0; k < visited.size(); k++)
-                if (visited.at(k) == *iterEdge)
+            for (int k : visited)
+                if (k == *iterEdge)
                     yaVisited = true;
             if (!yaVisited) {
                 reverseEdges.insert(i);
@@ -264,11 +286,11 @@ std::vector<std::set<int>> Interpreter::dfsForest(bool searchForest) {
     }
     graph.resetVisits();
     int countSCC = 0;
-    for (int i = 0; i < runOrder.size(); i++) {
-        if (!graph.checkVisited(runOrder[i])) {
+    for (int i : runOrder) {
+        if (!graph.checkVisited(i)) {
             std::set<int> newSCC;
             graph.insertSCC(newSCC);
-            newSCC = DFS(runOrder[i], countSCC);
+            newSCC = DFS(i, countSCC);
             if (!newSCC.empty())
                 countSCC++;
             else
@@ -282,9 +304,6 @@ std::string Interpreter::toString() {
     std::vector<Rule> printRules = datalog.getRules();
     std::vector<Predicate> printQueries = datalog.getQueries();
     std::string output;
-
-    output += "\nSchemes populated after " + std::to_string(numPasses) + " passes through the Rules.\n";
-
     output += "\nQuery Evaluation\n";
     for (unsigned int i = 0; i < printQueries.size(); i++) {
         //for each query, print the header
