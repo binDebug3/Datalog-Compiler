@@ -12,8 +12,11 @@ unsigned int Rule::getLength() const {
 Predicate* Rule::getHead() const {
     return headPredicate;
 }
-Predicate* Rule::getRuleAt(int index) const{
+Predicate* Rule::getRuleAt(int index) const {
     return bodyPredicates.at(index);
+}
+std::vector<Predicate*> Rule::getRules() const {
+    return bodyPredicates;
 }
 
 std::string Rule::toString() {

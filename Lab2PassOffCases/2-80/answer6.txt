@@ -1,2 +1,0 @@
-Failure!
-  (FACTS,"Facts",5)

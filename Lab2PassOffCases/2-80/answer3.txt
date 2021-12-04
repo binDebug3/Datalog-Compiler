@@ -1,2 +1,0 @@
-Failure!
-  (STRING,"'M'",7)

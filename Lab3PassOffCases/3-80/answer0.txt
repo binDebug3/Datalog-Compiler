@@ -1,3 +1,0 @@
-SK(D,C)? Yes(1)
-  D='a', C='a'
-SK(A,'c')? No

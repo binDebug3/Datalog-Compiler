@@ -15,6 +15,7 @@ public:
     ~Rule();
     unsigned int getLength() const;
     Predicate* getRuleAt(int index) const;
+    std::vector<Predicate*> getRules() const;
     Predicate* getHead() const;
     std::string toString();
 };

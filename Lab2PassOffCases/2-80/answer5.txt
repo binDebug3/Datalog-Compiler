@@ -1,2 +1,0 @@
-Failure!
-  (RIGHT_PAREN,")",6)

@@ -35,9 +35,11 @@ void Interpreter::buildQueries(const std::vector<Predicate>& queries) {
         evaluateQueries.push_back(this->evaluatePredicate(querie));
     }
 }
-//TODO test buildRules
 void Interpreter::buildRules(const std::vector<Rule>& rules) {
     std::cout << "Rule Evaluation" << std::endl;
+    std::vector<std::set<int>> strongCCs;
+    strongCCs = optimizeRules(rules);
+
     bool somethingChanged = true;
     while (somethingChanged) {
         somethingChanged = false;
@@ -55,7 +57,6 @@ void Interpreter::buildRules(const std::vector<Rule>& rules) {
             output = output.substr(0, output.length() - 1);
             output += ".\n";
 
-            //TODO fixed point algorithm
             //join the relations that result
             auto joinedRelations = new Relation();
             //joinedRelations with at least one actual relation explicitly
@@ -163,7 +164,120 @@ Relation* Interpreter::evaluatePredicate(Predicate predicate) {
     createRelation = createRelation->rename(renameString);
     return createRelation;
 }
-//TODO Rule Evaluation Output
+
+std::vector<std::set<int>> Interpreter::optimizeRules(const std::vector<Rule>& rules) {
+    std::vector<std::set<int>> strongCCs;
+    buildGraph(rules);
+    buildReverseGraph(rules);
+    dfsForest();
+    strongCCs = dfsForest(true);
+}
+void Interpreter::buildGraph(const std::vector<Rule>& rules) {
+    for (unsigned int i = 0; i < rules.size(); i++) {
+        std::set<int> edges;
+        std::vector<Predicate *> preEdges = rules.at(i).getRules();
+        //find any matching rules
+        for (unsigned int j = 0; j < preEdges.size(); j++) {
+            std::string edgeName = preEdges.at(j)->getName();
+            for (unsigned int k = 0; k < rules.size(); k++)
+                if (rules.at(k).getHead()->getName() == edgeName)
+                    edges.insert(k);
+        }
+        graph.insertNode(i, edges);
+    }
+}
+void Interpreter::buildReverseGraph(const std::vector<Rule>& rules) {
+    std::vector<int> visited;
+    bool yaVisited;
+    for (unsigned int i = 0; i < rules.size(); i++) {
+        std::set<int> edges = graph.getEdgesOfNode(i);
+        auto iterEdge = edges.begin();
+        for (unsigned int j = 0; j < edges.size(); j++) {
+            std::set<int> reverseEdges;
+            yaVisited = false;
+            for (unsigned int k = 0; k < visited.size(); k++)
+                if (visited.at(k) == *iterEdge)
+                    yaVisited = true;
+            if (!yaVisited) {
+                reverseEdges.insert(i);
+                reverseGraph.insertNode(*iterEdge, reverseEdges);
+                visited.push_back(*iterEdge);
+            }
+            else
+                reverseGraph.insertEdge(*iterEdge,i);
+            iterEdge++;
+        }
+    }
+    //catch any nodes that are sinks
+    if (reverseGraph.getLength() != rules.size()) {
+        for (unsigned int i = 0; i < rules.size(); i++) {
+            std::set<int> reverseEdges;
+            if (i >= reverseGraph.getLength() || reverseGraph.getNode(i) != i)
+                reverseGraph.insertNode(i, reverseEdges);
+        }
+    }
+}
+std::vector<int> Interpreter::DFS(int node) {
+    //return the post-order
+    reverseGraph.markNode(node, true);
+    std::set<int> edges = reverseGraph.getEdgesOfNode(node);
+    auto iterEdges = edges.begin();
+    for (int i = 0; i < edges.size(); i++) {
+        if (!reverseGraph.checkVisited(*iterEdges)) {
+            DFS(*iterEdges);
+            //std::cout << std::to_string(node) << ": " << graph.printPostOrder();
+        }
+        iterEdges++;
+    }
+    reverseGraph.pushBack(node);
+    return reverseGraph.getPostOrder();
+}
+std::set<int> Interpreter::DFS(int node, int countSCC) {
+    //returns the search tree
+    graph.markNode(node, true);
+    std::set<int> edges = graph.getEdgesOfNode(node);
+    auto iterEdges = edges.begin();
+    for (int i = 0; i < edges.size(); i++) {
+        if (!graph.checkVisited(*iterEdges)) {
+            DFS(*iterEdges, countSCC);
+        }
+        iterEdges++;
+    }
+    graph.insertElement(countSCC,node);
+    return graph.getSCC(countSCC);
+}
+std::vector<int> Interpreter::dfsForest() {
+    reverseGraph.resetVisits();
+    for (int i = 0; i < reverseGraph.getLength(); i++) {
+        if (!reverseGraph.checkVisited(i))
+            DFS(i);
+    }
+    return reverseGraph.getPostOrder();
+}
+std::vector<std::set<int>> Interpreter::dfsForest(bool searchForest) {
+    //reverse the post-order of the reverse graph
+    std::vector<int> runOrder;
+    unsigned int index = reverseGraph.getPostOrder().size();
+    while (index > 0) {
+        index--;
+        runOrder.push_back(reverseGraph.getPostOrder().at(index));
+    }
+    graph.resetVisits();
+    int countSCC = 0;
+    for (int i = 0; i < runOrder.size(); i++) {
+        if (!graph.checkVisited(runOrder[i])) {
+            std::set<int> newSCC;
+            graph.insertSCC(newSCC);
+            newSCC = DFS(runOrder[i], countSCC);
+            if (!newSCC.empty())
+                countSCC++;
+            else
+                graph.deleteSCC();
+        }
+    }
+    return graph.getAllSCC();
+}
+
 std::string Interpreter::toString() {
     std::vector<Rule> printRules = datalog.getRules();
     std::vector<Predicate> printQueries = datalog.getQueries();

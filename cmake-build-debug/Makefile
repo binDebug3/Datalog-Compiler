@@ -366,6 +366,33 @@ FactsAutomaton.cpp.s:
 	$(MAKE) -f CMakeFiles/Project1_Starter_Code.dir/build.make CMakeFiles/Project1_Starter_Code.dir/FactsAutomaton.cpp.s
 .PHONY : FactsAutomaton.cpp.s
 
+Graph.o: Graph.cpp.o
+
+.PHONY : Graph.o
+
+# target to build an object file
+Graph.cpp.o:
+	$(MAKE) -f CMakeFiles/Project1_Starter_Code.dir/build.make CMakeFiles/Project1_Starter_Code.dir/Graph.cpp.o
+.PHONY : Graph.cpp.o
+
+Graph.i: Graph.cpp.i
+
+.PHONY : Graph.i
+
+# target to preprocess a source file
+Graph.cpp.i:
+	$(MAKE) -f CMakeFiles/Project1_Starter_Code.dir/build.make CMakeFiles/Project1_Starter_Code.dir/Graph.cpp.i
+.PHONY : Graph.cpp.i
+
+Graph.s: Graph.cpp.s
+
+.PHONY : Graph.s
+
+# target to generate assembly for a file
+Graph.cpp.s:
+	$(MAKE) -f CMakeFiles/Project1_Starter_Code.dir/build.make CMakeFiles/Project1_Starter_Code.dir/Graph.cpp.s
+.PHONY : Graph.cpp.s
+
 Header.o: Header.cpp.o
 
 .PHONY : Header.o
@@ -996,6 +1023,9 @@ help:
 	@echo "... FactsAutomaton.o"
 	@echo "... FactsAutomaton.i"
 	@echo "... FactsAutomaton.s"
+	@echo "... Graph.o"
+	@echo "... Graph.i"
+	@echo "... Graph.s"
 	@echo "... Header.o"
 	@echo "... Header.i"
 	@echo "... Header.s"

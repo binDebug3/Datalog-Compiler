@@ -65,4 +65,4 @@ add_executable(Project1_Starter_Code
         Interpreter.cpp
         main.cpp
         Relacion.h
-        Relacion.cpp)
+        Relacion.cpp Graph.h Graph.cpp)
