@@ -16,7 +16,7 @@ public:
     ~Graph();
     void insertNode(int node, const std::set<int>& edges);
     void insertEdge(int node, int edge);
-    int getNode(int index);
+    unsigned int getNode(int index);
     std::set<int> getEdgesOfNode(int node);
 
     bool checkVisited(int node);

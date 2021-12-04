@@ -28,7 +28,7 @@ void Graph::markNode(int node, bool marked) {
 unsigned int Graph::getLength() const {
     return graphEdges.size();
 }
-int Graph::getNode(int index) {
+unsigned int Graph::getNode(int index) {
     auto iterGraph = graphEdges.begin();
     for (int i = 0; i < index; i++) {
         iterGraph++;
