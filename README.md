@@ -1,4 +1,4 @@
-# Datalog Compiler
+# Datalog Compiler - Dallin Stewart
 
 ## BYU CS 236 Discrete Structures
 Over the course of a semester I built a Datalog Scanner, Parser, Relational Database, Datalog interpreter and then optimized 
